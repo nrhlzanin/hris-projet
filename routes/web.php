@@ -33,3 +33,7 @@ Route::get('/set-new-password', function () {
 Route::get('/link-expired', function () {
     return view('link-expired');
 })->name('link.expired');
+
+Route::get('/employee-database', function () {
+    return view('employee-database');
+})->name('employee.database');
