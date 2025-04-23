@@ -13,7 +13,10 @@
 <body class="font-inter bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="bg-white rounded-md shadow-lg w-full max-w-5xl overflow-hidden flex flex-col md:flex-row">
         {{-- Left Image Section --}}
-        <div class="w-full md:w-1/2 h-64 md:h-auto">
+        <div class="w-full md:w-1/2 h-64 md:h-auto relative">
+            <a href="{{ route('welcome') }}" class="absolute top-4 left-4 bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center">
+                <span class="text-xl">&#8592;</span>
+            </a>
             <img src="/Img/hris-illustration.svg" alt="HRIS Illustration" class="w-full h-full object-cover">
         </div>
 
@@ -59,7 +62,7 @@
                 </div>
 
                 <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">SIGN UP</button>
-                <button type="button" class="w-full bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 rounded">Sign up with Google</button>
+                <button type="button" class="w-full bg-gray-400 hover:bg-blue-500 text-white font-bold py-2 rounded">Sign up with Google</button>
 
                 <p class="text-center text-sm mt-4">Already have an account? <a href="{{ route('sign.in') }}" class="text-blue-600 underline">Sign in here</a></p>
             </form>

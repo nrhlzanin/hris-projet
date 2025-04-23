@@ -33,13 +33,18 @@
                 <a href="{{ route('sign.in') }}" class="text-blue-600 font-semibold hover:underline">Try for free!</a>
             </div>
 
-            <h1 class="text-3xl font-bold mb-2">Sign In</h1>
+            <h1 class="text-3xl font-bold mb-2">Sign in with ID Employee</h1>
             <p class="mb-6 text-gray-700">Welcome back to HRIS cmlabs! Manage everyting with ease.</p>
 
             <form class="space-y-5">
                 <div>
-                    <label class="block text-sm font-medium mb-1">Email</label>
-                    <input type="email" placeholder="Enter your email"
+                    <label class="block text-sm font-medium mb-1">Company Username</label>
+                    <input type="text" placeholder="Enter your Company Username"
+                        class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Id Employee</label>
+                    <input type="text" placeholder="Enter your ID Employee"
                         class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 </div>
                 <div>
@@ -55,17 +60,14 @@
                     <a href="{{ route('forgot.password') }}" class="text-blue-600 font-semibold hover:underline">
                         Forgot your password?
                     </a>
-                </div>                
+                </div>  
 
                 <button type="submit"
                     class="w-full bg-blue-500 hover:bg-green-600 text-white font-bold py-2 rounded">SIGN IN</button>
-                <button type="button"
-                    class="w-full bg-gray-400 hover:bg-blue-500 text-white font-bold py-2 rounded">Sign up with
-                    Google</button>
-                <a href="{{ route('sign.in.employee') }}">
+                <a href="{{ route('sign.in') }}">
                     <button type="button"
                         class="w-full bg-gray-400 hover:bg-blue-500 text-white font-bold py-2 rounded">
-                        Sign up with Employee
+                        Use a different sign-in method
                     </button>
                 </a>
 
