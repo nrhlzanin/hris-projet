@@ -1,4 +1,4 @@
-# HRIS (HUman Resource Information System)
+# HRIS (Human Resource Information System)
 
 Copy the .env.example then
 Rename it into .env
