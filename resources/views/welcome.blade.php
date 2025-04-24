@@ -44,8 +44,98 @@
             <div class="flex items-center space-x-1"><span class="text-green-500">✔</span><span class="text-black">2 minutes to get started</span></div>
         </div>
 
-    <!-- Pricing -->
-    <!-- SEO Agency -->
+    <!-- Pricing Plans Section -->
+    <section class="py-20 text-center">
+        <h2 class="text-4xl font-bold mb-2">HRIS Pricing Plans</h2>
+        <p class="text-gray-700 mb-8">Choose the plan that best suits your business. This HRIS offers both subscription and pay-as-you-go payment options.</p>
+  
+        <div class="inline-flex mb-10">
+          <button class="px-6 py-2 bg-white shadow text-sm font-semibold rounded-l">Package</button>
+          <button class="px-6 py-2 bg-blue-500 text-white shadow text-sm font-semibold rounded-r">Seat</button>
+        </div>
+  
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+          <!-- Starter -->
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-xl font-semibold">Starter</h3>
+            <p class="text-3xl font-bold">Free</p>
+            <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
+              <li>GPS based attendance</li>
+              <li>Overtime management</li>
+              <li>Leave and time-off request</li>
+              <li>Employee data management</li>
+              <li>FIxed work schedule management</li>
+              <li>Automatic fixed calculation</li>
+            </ul>
+            <button class="mt-6 w-full bg-blue-100 py-2 rounded">Current Plan</button>
+          </div>
+  
+          <!-- Lite -->
+          <div class="bg-gray-900 text-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-semibold">Lite <span class="text-sm">(Recommended)</span></h3>
+            <p class="text-3xl font-bold">$15 <span class="text-base">/year</span></p>
+            <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
+              <li>All standard features</li>
+              <li>Clock-in clock-out attendance settings</li>
+              <li>Employee document management</li>
+              <li>Sick leave & time-out settings</li>
+              <li>Shift management</li>
+              <li>Site password protection</li>
+            </ul>
+            <button class="mt-6 w-full bg-blue-600 py-2 rounded">Upgrade plan</button>
+          </div>
+  
+          <!-- Pro -->
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-xl font-semibold">Pro</h3>
+            <p class="text-3xl font-bold">$35 <span class="text-base">/year</span></p>
+            <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
+              <li>2 Project</li>
+              <li>Client billing</li>
+              <li>Free staging</li>
+              <li>Code export</li>
+              <li>White labeling</li>
+              <li>Site Password protection</li>
+            </ul>
+            <button class="mt-6 w-full bg-blue-100 py-2 rounded">Upgrade plan</button>
+          </div>
+        </div>
+      </section>
+      <!-- END: Pricing Plans Section -->
+  
+      <!-- START: SEO Agency Section -->
+      <section class="bg-blue-200 py-20 px-8">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          <div class="h-60 bg-gray-300 rounded-md"></div>
+          <div>
+            <h2 class="text-4xl font-bold mb-4">cmlabs SEO Agency Indonesia</h2>
+            <p class="text-gray-800 text-lg leading-relaxed">cmlabs is a global SEO agency that offers its services in Indonesia. We help businesses achieve optimal visibility on search engine results pages (SERPs). With attentive website optimization and impactful digital marketing solutions, we will be your guide to a sustainable and authoritative online presence!</p>
+            <h3 class="mt-6 text-xl font-bold">Widely Available in These Countries</h3>
+          </div>
+        </div>
+  
+        <!-- Stats Block -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 text-center">
+          <div class="bg-black text-white py-6 rounded">
+            <p class="text-2xl font-bold">314,566,114+</p>
+            <p>Total Engagement</p>
+          </div>
+          <div class="bg-black text-white py-6 rounded">
+            <p class="text-2xl font-bold">15.425</p>
+            <p>Avg Keyword Rank</p>
+          </div>
+          <div class="bg-black text-white py-6 rounded">
+            <p class="text-2xl font-bold">20,836+</p>
+            <p>Content Produced</p>
+          </div>
+          <div class="bg-black text-white py-6 rounded">
+            <p class="text-2xl font-bold">9,185,238,642+</p>
+            <p>Total Reach</p>
+          </div>
+        </div>
+      </section>
+      <!-- END: SEO Agency Section -->
+
     <!-- Bottom -->
         <!-- Section: Clients -->
             <h2 class="text-4xl text-center font-semibold">CMLABS Clients</h2>
