@@ -105,7 +105,9 @@
                         <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Filter</button>
                         <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Import</button>
                         <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Export</button>
-                        <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">+ Add Data</button>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            <a href="{{ route('new.employee') }}">+ Add Data</a>
+                        </button>
                     </div>
                 </div>
 
