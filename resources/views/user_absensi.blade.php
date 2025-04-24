@@ -120,7 +120,7 @@
                     <input type="text" placeholder="Lat lokasi" class="w-full border rounded px-3 py-2 mt-1" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium">Long</label>
+                 <label class="block text-sm font-medium">Long</label>
                     <input type="text" placeholder="Long lokasi" class="w-full border rounded px-3 py-2 mt-1" />
                   </div>
                 </div>
