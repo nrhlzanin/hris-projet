@@ -54,7 +54,7 @@
           <button class="px-6 py-2 bg-blue-500 text-white shadow text-sm font-semibold rounded-r">Seat</button>
         </div>
   
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-h-lg max-w-6xl mx-auto px-6">
           <!-- Starter -->
           <div class="bg-white rounded-lg shadow p-6">
             <h3 class="text-xl font-semibold">Starter</h3>
