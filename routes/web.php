@@ -9,52 +9,53 @@ Route::get('/', function () {
 
 // Onboarding Pages
 Route::get('/get-started', function () {
-    return view('Auth.get-started');
+    return view('get-started');
 })->name('get.started');
 
 // Authentication
 Route::get('/sign-in', function () {
-    return view('Auth.sign-in');
+    return view('sign-in');
 })->name('sign.in');
-
+ 
 Route::get('/sign-in-employee', function () {
-    return view('Auth.sign-in-employee');
+    return view('sign-in-employee');
 })->name('sign.in.employee');
 
 Route::get('/forgot-password', function () {
-    return view('Auth.forgot-password');
+    return view('forgot-password');
 })->name('forgot.password');
-
 Route::get('/check-your-email', function () {
-    return view('Auth.check-your-email');
+    return view('check-your-email');
 })->name('check.your.email');
-
 Route::get('/set-new-password', function () {
-    return view('Auth.set-new-password');
+    return view('set-new-password');
 })->name('set.new.password');
-
 Route::get('/link-expired', function () {
-    return view('Auth.link-expired');
+    return view('link-expired');
 })->name('link.expired');
 
-// Employee Database
 Route::get('/employee-database', function () {
-    return view('Employee.employee-database');
+    return view('employee-database');
 })->name('employee.database');
 
-// Checklock Absen Routes
-Route::get('/admin-checklock', function () {
-    return view('Checklock.admin_checklock');
-})->name('checklock.admin');
+//checklock
+Route::get('/user_absensi', function () {
+    return view('user_absensi');
+})->name('user_absensi');
 
-Route::get('/admin-absensi', function () {
-    return view('Checklock.admin_absensi');
-})->name('checklock.admin.absensi');
+Route::get('/user_checklock', function () {
+    return view('user_checklock');
+})->name('user_checklock');
 
-Route::get('/user-checklock', function () {
-    return view('Checklock.user_checklock');
-})->name('checklock.user');
+Route::get('/admin_absensi', function () {
+    return view('admin_absensi');
+})->name('admin_absensi');
 
-Route::get('/user-absensi', function () {
-    return view('Checklock.user_absensi');
-})->name('checklock.user.absensi');
+Route::get('/admin_checklock', function () {
+    return view('admin_checklock');
+})->name('admin_checklock');
+
+//dashboard
+Route::get('/admin_dashboard', function () {
+    return view('admin_dashboard');
+})->name('admin_dashboard');
