@@ -74,6 +74,45 @@
           </nav>
       <!-- Form -->
       <div class="p-6 mt-20">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-20 bg-blue-200 flex flex-col items-center py-6 space-y-6 shadow-md">
+      <a href="#"><img src="/icons/dashboard.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/employees.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/clock.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/calendar.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/report.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/support.svg" class="w-6 h-6" /></a>
+      <a href="#" class="mt-auto"><img src="/icons/setting.svg" class="w-6 h-6" /></a>
+    </aside>
+
+    <!-- Main content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Navbar -->
+      <nav class="bg-white px-6 py-4 flex items-center justify-between shadow">
+        <h1 class="text-xl font-bold">Checklock</h1>
+        <div class="flex items-center space-x-4">
+          <button>
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+          </button>
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 rounded-full bg-blue-800"></div>
+            <div class="text-sm text-gray-700">
+              <div>username</div>
+              <div class="text-xs text-gray-500">roles user</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Form -->
+      <div class="p-6">
         <div class="bg-white rounded shadow p-6">
           <h2 class="text-2xl font-semibold mb-4">Add Checkbox</h2>
           <div class="grid grid-cols-2 gap-6">
@@ -81,12 +120,6 @@
             <div class="space-y-4">
               <div>
                 <label class="block text-sm font-medium">Select Employees</label>
-                <select name="employee_id" class="w-full border rounded px-3 py-2 mt-1">
-                  <option value="">Choose Employee</option>
-                  {{-- @foreach ($employees as $employee)
-                      <option value="{{ $employee->id }}">{{ $employee->name }}</option>
-                  @endforeach --}}
-                </select>                
               </div>
               <div>
                 <label class="block text-sm font-medium">Absent Type</label>
@@ -142,7 +175,6 @@
                 Cancel
               </button>
             </a>
-            
             <button class="px-4 py-2 bg-black text-white rounded">Save</button>
           </div>
         </div>
