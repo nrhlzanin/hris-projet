@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="flex justify-end space-x-4 mt-6">
-            <button class="px-4 py-2 bg-gray-300 text-gray-700 rounded">Cancel</button>
+            <button type="button" onclick="window.location.href='/admin-checklock';" class="px-4 py-2 bg-gray-300 text-gray-700 rounded">Cancel</button>
             <button class="px-4 py-2 bg-black text-white rounded">Save</button>
           </div>
         </div>
