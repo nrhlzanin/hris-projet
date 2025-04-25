@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checklock Overview</title>
+  <title>Admin Checklock</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen">
   <div class="flex h-screen">
     <!-- Sidebar -->
     <aside class="w-20 bg-blue-200 flex flex-col items-center py-6 space-y-6 shadow-md">
-      <a href="#"><img src="/icons/dashboard.svg" class="w-6 h-6" /></a>
+      <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-10">
       <a href="#"><img src="/icons/employees.svg" class="w-6 h-6" /></a>
       <a href="#"><img src="/icons/clock.svg" class="w-6 h-6" /></a>
       <a href="#"><img src="/icons/calendar.svg" class="w-6 h-6" /></a>
@@ -24,7 +24,7 @@
       <!-- Navbar -->
       <nav class="bg-white px-6 py-4 flex items-center justify-between shadow">
         <div class="flex items-center space-x-6">
-          <h1 class="text-xl font-bold">Checklock</h1>
+          <h1 class="text-xl font-bold">Admin Checklock</h1>
           <div class="relative">
             <input type="text" placeholder="Search" class="border px-3 py-1 pl-10 rounded w-64" />
             <svg class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@
             <h2 class="text-2xl font-semibold">Checklock Overview</h2>
             <div class="flex gap-2">
               <button class="border px-4 py-2 rounded">Filter</button>
-              <button class="bg-blue-500 text-white px-4 py-2 rounded">+ Add Data</button>
+              <a href="{{ route('admin_absensi') }}" class="bg-blue-500 text-white px-4 py-2 rounded">+ Add Data</a>
             </div>
           </div>
           <input type="text" placeholder="Search Employee" class="w-full border rounded px-3 py-2 mb-4">

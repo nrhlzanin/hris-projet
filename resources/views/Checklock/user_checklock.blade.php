@@ -10,7 +10,8 @@
 <div class="flex h-screen">
     <!-- Sidebar -->
     <aside class="w-20 bg-blue-200 flex flex-col items-center py-6 space-y-6 shadow-md">
-        <a href="#"><img src="/icons/dashboard.svg" class="w-6 h-6" /></a>
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-10">
+
         <a href="#"><img src="/icons/employees.svg" class="w-6 h-6" /></a>
         <a href="#"><img src="/icons/clock.svg" class="w-6 h-6" /></a>
         <a href="#"><img src="/icons/calendar.svg" class="w-6 h-6" /></a>
@@ -25,7 +26,7 @@
         <!-- Navbar -->
         <nav class="bg-white px-6 py-4 flex items-center justify-between shadow">
             <div class="flex items-center space-x-4">
-                <h1 class="text-xl font-bold">Employee Database</h1>
+                <h1 class="text-xl font-bold">Dasbord User</h1>
                 <input type="text" placeholder="Search"
                        class="ml-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
             </div>
@@ -56,7 +57,7 @@
                         <input type="text" placeholder="Search Employee"
                                class="px-3 py-2 border rounded-md focus:ring focus:border-blue-300">
                         <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Filter</button>
-                        <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">+ Add Data</button>
+                        <a href="{{ route('user_absensi') }}" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">+ Add Data</a>
                     </div>
                 </div>
 
