@@ -47,7 +47,7 @@ Route::get('/employee-database', function () {
     return view('employee/employee-database');
 })->name('employee.database');
 
-Rotte::get('new-emplpoyee',function(){
+Route::get('new-emplpoyee',function(){
     return view('employee/new-employee');
 })->name('new.employee');
 
