@@ -59,3 +59,7 @@ Route::get('/admin_checklock', function () {
 Route::get('/admin_dashboard', function () {
     return view('admin_dashboard');
 })->name('admin_dashboard');
+
+Route::get('/user-dashboard', function () {
+    return view('user_dashboard');
+})->name('user_dashboard');
