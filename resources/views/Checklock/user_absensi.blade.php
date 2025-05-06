@@ -53,7 +53,7 @@
             <button class="flex items-center space-x-2 focus:outline-none">
               <div class="w-8 h-8 rounded-full bg-blue-800"></div>
               <div class="text-sm text-gray-700">username</div>
-              <i class="ri-arrow-down-s-line"></i>
+              <i class="ri-arrow-down-s-line"></i> 
             </button>
           </div>
         </div>
@@ -66,20 +66,17 @@
       <form>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <!-- Left Section -->
-          <div class="space-y-4">
-            <div>
-              <label class="block text-sm font-medium">Select Employees</label>
-              <select class="w-full border rounded px-3 py-2">
-                <option>Choose Employee</option>
-              </select>
-            </div>
 
-            <div>
-              <label class="block text-sm font-medium">Absent Type</label>
-              <select class="w-full border rounded px-3 py-2">
-                <option>Choose Absent Type</option>
-              </select>
-            </div>
+          <div>
+            <label class="block text-sm font-medium">Absent Type</label>
+            <select class="w-full border rounded px-3 py-2 mt-1">
+              <option>Clock In</option>
+              <option>Clock Out</option>
+              <option selected>Absent</option>
+              <option>Annual Leave</option>
+              <option>Sick Leave</option>
+            </select>
+          </div>
 
             <div class="flex gap-4">
               <div class="flex-1">
@@ -132,7 +129,19 @@
               </div>
             </div>
           </div>
-        </div><script>
+        </div>
+        
+        <div class="flex justify-end space-x-4 mt-6">
+          <a href="/admin-checklock">
+            <button class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded">
+              Cancel
+            </button>
+          </a>
+          
+          <button class="px-4 py-2 bg-black text-white rounded">Save</button>
+        </div>
+        
+        <script>
           document.addEventListener("DOMContentLoaded", function () {
             const fileInput = document.getElementById("fileInput");
             const browseButton = document.getElementById("browseButton");
