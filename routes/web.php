@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 
 // Landing Page
 Route::get('/', function () {
@@ -9,52 +10,61 @@ Route::get('/', function () {
 
 // Onboarding Pages
 Route::get('/get-started', function () {
-    return view('Auth.get-started');
+    return view('auth.get-started');
 })->name('get.started');
 
 // Authentication
 Route::get('/sign-in', function () {
-    return view('Auth.sign-in');
+    return view('auth.sign-in');
 })->name('sign.in');
 
 Route::get('/sign-in-employee', function () {
-    return view('Auth.sign-in-employee');
+    return view('auth.sign-in-employee');
 })->name('sign.in.employee');
 
 Route::get('/forgot-password', function () {
-    return view('Auth.forgot-password');
+    return view('auth.forgot-password');
 })->name('forgot.password');
 
 Route::get('/check-your-email', function () {
-    return view('Auth.check-your-email');
+    return view('auth.check-your-email');
 })->name('check.your.email');
 
 Route::get('/set-new-password', function () {
-    return view('Auth.set-new-password');
+    return view('auth.set-new-password');
 })->name('set.new.password');
 
-Route::get('/link-expired', function () {
-    return view('Auth.link-expired');
+Route::get('/auth/link-expired', function () {
+    return view('auth.link-expired');
 })->name('link.expired');
 
-// Employee Database
+// Dashboard
+Route::get('/admin-dashboard', function () {
+    return view('dasbord.admin_dashboard');
+})->name('admin_dashboard');
+
+// Employee
 Route::get('/employee-database', function () {
-    return view('Employee.employee-database');
+    return view('employee.employee-database');
 })->name('employee.database');
 
-// Checklock Absen Routes
-Route::get('/admin-checklock', function () {
-    return view('Checklock.admin_checklock');
-})->name('checklock.admin');
+Route::get('/new-employee', function () {
+    return view('employee.new-employee');
+})->name('new.employee');
 
-Route::get('/admin-absensi', function () {
-    return view('Checklock.admin_absensi');
-})->name('checklock.admin.absensi');
-
+// Checklock
 Route::get('/user-checklock', function () {
-    return view('Checklock.user_checklock');
-})->name('checklock.user');
+    return view('checklock.user_checklock');
+})->name('user_checklock');
 
 Route::get('/user-absensi', function () {
-    return view('Checklock.user_absensi');
-})->name('checklock.user.absensi');
+    return view('checklock.user_absensi');
+})->name('user_absensi');
+
+Route::get('/admin-checklock', function () {
+    return view('checklock.admin_checklock');
+})->name('admin_checklock');
+
+Route::get('/admin-absensi', function () {
+    return view('checklock.admin_absensi');
+})->name('admin_absensi');

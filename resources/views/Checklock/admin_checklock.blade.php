@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checklock Overview</title>
+  <title>Admin Checklock</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
@@ -31,17 +31,18 @@
                 <a href="#" class="hover:text-blue-500"><i class="ri-settings-3-line text-2xl"></i></a>
             </nav>
         </div>
+    <aside class="w-20 bg-blue-200 flex flex-col items-center py-6 space-y-6 shadow-md">
+      <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-10">
+      <a href="#"><img src="/icons/employees.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/clock.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/calendar.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/report.svg" class="w-6 h-6" /></a>
+      <a href="#"><img src="/icons/support.svg" class="w-6 h-6" /></a>
+      <a href="#" class="mt-auto"><img src="/icons/setting.svg" class="w-6 h-6" /></a>
     </aside>
 
     <!-- Main content -->
     <div class="flex-1 flex flex-col">
-
-        <!-- Top Navbar -->
-        <nav class="bg-white px-6 py-4 flex items-center justify-between shadow w-full fixed top-0 left-0 z-10">
-            <!-- Logo di kiri -->
-            <div class="flex items-center space-x-4">
-                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-10">
-                <h1 class="text-xl font-bold pl-6">Employee Database</h1>
             </div>
 
             <!-- Input pencarian di tengah -->
@@ -86,6 +87,7 @@
                   + Add Data
                 </button>
               </a>
+              <a href="{{ route('admin_absensi') }}" class="bg-blue-500 text-white px-4 py-2 rounded">+ Add Data</a>
             </div>
           </div>
           <input type="text" placeholder="Search Employee" class="w-full border rounded px-3 py-2 mb-4">
