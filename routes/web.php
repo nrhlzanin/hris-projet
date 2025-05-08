@@ -52,6 +52,8 @@ Route::get('/new-employee', function () {
     return view('employee.new-employee');
 })->name('new.employee');
 
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+
 // Checklock
 Route::get('/user-checklock', function () {
     return view('checklock.user_checklock');
