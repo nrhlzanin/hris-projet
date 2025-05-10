@@ -8,6 +8,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// Pricing Page
+Route::get('/pricing-plans', function () {
+    return view('plans.pricing-plans');
+})->name('pricing.plans');
+
+Route::get('/choose-pro', function () {
+    return view('plans.choose-pro');
+})->name('choose.pro');
+
+Route::get('/choose-lite', function () {
+    return view('plans.choose-lite');
+})->name('choose.lite');
+
 // Onboarding Pages
 Route::get('/get-started', function () {
     return view('auth.get-started');
