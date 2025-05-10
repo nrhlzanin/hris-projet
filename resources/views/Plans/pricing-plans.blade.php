@@ -37,7 +37,7 @@
                 <input type="radio" name="tab" id="package" class="hidden peer/package" checked>
                 <input type="radio" name="tab" id="seat" class="hidden peer/seat">
 
-                <!-- Sliding Background (Dark Blue #1D395E) -->
+                <!-- Sliding Background -->
                 <div
                     class="absolute top-0 left-0 h-full w-1/2 bg-[#1D395E] rounded-full transition-all duration-300 peer-checked/seat:translate-x-full">
                 </div>
