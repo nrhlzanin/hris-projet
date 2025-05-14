@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Form Absensi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Form Absensi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100 min-h-screen">
   <div class="flex h-screen">
     <!-- Sidebar -->
@@ -57,7 +59,12 @@
             </button>
           </div>
         </div>
-      </nav>
+
+        <!-- Main content -->
+        <div class="ml-20 w-full px-4 lg:px-20">
+
+            <!-- Navbar -->
+            @include('components.navbar')
 
     <!-- Add Checkbox Form Card -->
     <div class="bg-white p-6 rounded-lg shadow-md w-full mt-24">
@@ -78,45 +85,50 @@
             </select>
           </div>
 
-            <div class="flex gap-4">
-              <div class="flex-1">
-                <label class="block text-sm font-medium">Start Date</label>
-                <input type="date" class="w-full border rounded px-3 py-2">
-              </div>
-              <div class="flex-1">
-                <label class="block text-sm font-medium">End Date</label>
-                <input type="date" class="w-full border rounded px-3 py-2">
-              </div>
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium">Upload Supporting Evidence</label>
-              <div class="border-dashed border-2 rounded-lg p-6 text-center">
-                Drag and Drop Here<br>Or<br>
-                <a href="#" id="browseButton" class="text-blue-500 underline">Browse</a>
-                <input type="file" id="fileInput" class="hidden">
-                <div id="fileName" class="mt-2 text-sm text-gray-600"></div>
-              </div>
-              <button id="uploadBtn" class="mt-2 bg-gray-200 text-sm px-4 py-2 rounded cursor-not-allowed" disabled>Upload Now</button>
-            </div>
+                            <div class="flex gap-4">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium">Start Date</label>
+                                    <input type="date" class="w-full border rounded px-3 py-2">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium">End Date</label>
+                                    <input type="date" class="w-full border rounded px-3 py-2">
+                                </div>
+                            </div>
 
-          <!-- Right Section -->
-          <div class="space-y-4">
-            <div>
-              <label class="block text-sm font-medium">Location</label>
-              <select class="w-full border rounded px-3 py-2">
-                <option>Choose Location</option>
-              </select>
-            </div>
+                            <div>
+                                <label class="block text-sm font-medium">Upload Supporting Evidence</label>
+                                <div class="border-dashed border-2 rounded-lg p-6 text-center">
+                                    Drag and Drop Here<br>Or<br>
+                                    <a href="#" id="browseButton" class="text-blue-500 underline">Browse</a>
+                                    <input type="file" id="fileInput" class="hidden">
+                                    <div id="fileName" class="mt-2 text-sm text-gray-600"></div>
+                                </div>
+                                <button id="uploadBtn"
+                                    class="mt-2 bg-gray-200 text-sm px-4 py-2 rounded cursor-not-allowed"
+                                    disabled>Upload Now</button>
+                            </div>
+                        </div>
 
-            <div>
-              <img src="https://via.placeholder.com/400x200?text=Map" alt="Map" class="w-full h-48 object-cover rounded border">
-            </div>
+                        <!-- Right Section (Row 2) -->
+                        <div class="space-y-4 w-full lg:w-1/2">
+                            <div>
+                                <label class="block text-sm font-medium">Location</label>
+                                <select class="w-full border rounded px-3 py-2">
+                                    <option>Choose Location</option>
+                                </select>
+                            </div>
 
-            <div>
-              <label class="block text-sm font-medium">Detail Address</label>
-              <input type="text" value="Malang City, East Java" class="w-full border rounded px-3 py-2">
-            </div>
+                            <div>
+                                <img src="https://via.placeholder.com/400x200?text=Map" alt="Map"
+                                    class="w-full h-48 object-cover rounded border">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium">Detail Address</label>
+                                <input type="text" value="Malang City, East Java"
+                                    class="w-full border rounded px-3 py-2">
+                            </div>
 
             <div class="flex gap-4">
               <div class="flex-1">
@@ -151,20 +163,22 @@
             const browseButton = document.getElementById("browseButton");
             const fileName = document.getElementById("fileName");
             const uploadBtn = document.getElementById("uploadBtn");
-        
+
             browseButton.addEventListener("click", function (e) {
-              e.preventDefault();
-              fileInput.click();
+                e.preventDefault();
+                fileInput.click();
             });
-        
+
             fileInput.addEventListener("change", function () {
-              if (fileInput.files.length > 0) {
-                fileName.textContent = fileInput.files[0].name;
-                uploadBtn.disabled = false;
-                uploadBtn.classList.remove("cursor-not-allowed", "bg-gray-200", "text-gray-600");
-                uploadBtn.classList.add("cursor-pointer", "bg-blue-500", "text-white", "hover:bg-blue-600");
-              }
+                if (fileInput.files.length > 0) {
+                    fileName.textContent = fileInput.files[0].name;
+                    uploadBtn.disabled = false;
+                    uploadBtn.classList.remove("cursor-not-allowed", "bg-gray-200", "text-gray-600");
+                    uploadBtn.classList.add("cursor-pointer", "bg-blue-500", "text-white", "hover:bg-blue-600");
+                }
             });
-          });
-        </script>
-        
+        });
+    </script>
+</body>
+
+</html>

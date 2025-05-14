@@ -8,6 +8,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// Pricing Page
+Route::get('/pricing-plans', function () {
+    return view('plans.pricing-plans');
+})->name('pricing.plans');
+
+Route::get('/choose-pro', function () {
+    return view('plans.choose-pro');
+})->name('choose.pro');
+
+Route::get('/choose-lite', function () {
+    return view('plans.choose-lite');
+})->name('choose.lite');
+
 // Onboarding Pages
 Route::get('/get-started', function () {
     return view('auth.get-started');
@@ -40,8 +53,8 @@ Route::get('/auth/link-expired', function () {
 
 // Dashboard
 Route::get('/admin-dashboard', function () {
-    return view('dasbord.admin_dashboard');
-})->name('admin_dashboard');
+    return view('dasbord.admin-dashboard');
+})->name('admin-dashboard');
 
 // Employee
 Route::get('/employee-database', function () {
@@ -51,6 +64,8 @@ Route::get('/employee-database', function () {
 Route::get('/new-employee', function () {
     return view('employee.new-employee');
 })->name('new.employee');
+
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
 
 // Checklock
 Route::get('/user-checklock', function () {
