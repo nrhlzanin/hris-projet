@@ -33,28 +33,29 @@
             <h1 class="text-3xl font-bold mb-2">Sign Up</h1>
             <p class="mb-6 text-gray-700">Create your account and streamline your employee management.</p>
 
-            <form class="space-y-5">
+            <form action="{{ route('sign.up.post') }}" method="POST" class="space-y-5">
+                @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium mb-1">First Name</label>
-                        <input type="text" placeholder="Enter your first name" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <input type="text" name="first_name" placeholder="Enter your first name" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-1">Last Name</label>
-                        <input type="text" placeholder="Enter your last name" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <input type="text" name="last_name" placeholder="Enter your last name" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                     </div>
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Email</label>
-                    <input type="email" placeholder="Enter your email" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <input type="email" name="email" placeholder="Enter your email" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Password</label>
-                    <input type="password" placeholder="Enter your password" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <input type="password" name="password" placeholder="Enter your password" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Confirm Password</label>
-                    <input type="password" placeholder="Enter your confirm password" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <input type="password" name="password_confirmation" placeholder="Enter your confirm password" class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 </div>
                 <div class="flex items-center text-sm">
                     <input type="checkbox" id="terms" class="mr-2">
@@ -62,10 +63,11 @@
                 </div>
 
                 <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">SIGN UP</button>
-                <button type="button" class="w-full bg-gray-400 hover:bg-blue-500 text-white font-bold py-2 rounded">Sign up with Google</button>
-
-                <p class="text-center text-sm mt-4">Already have an account? <a href="{{ route('sign.in') }}" class="text-blue-600 underline">Sign in here</a></p>
             </form>
+
+            <a href="{{ route('google.redirect') }}" class="w-full bg-gray-400 hover:bg-blue-500 text-white font-bold py-2 rounded text-center block">Sign up with Google</a>
+
+            <p class="text-center text-sm mt-4">Already have an account? <a href="{{ route('sign.in') }}" class="text-blue-600 underline">Sign in here</a></p>
         </div>
     </div>
 </body>
