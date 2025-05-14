@@ -20,7 +20,7 @@
     <!-- Navbar -->
     <nav class="flex items-center justify-between px-8 py-4 shadow bg-white">
         <div class="flex items-center space-x-4">
-            <img src="\img\logo.png" alt="Logo" class="h-8 w-4" />
+            <img src="{{ asset('img/logo/Vector HRIS.png') }}" alt="Logo" class="h-8 w-4" />
             <ul class="flex space-x-8 text-sm font-medium text-gray-700">
                 <li><a href="#" class="hover:text-blue-600">Home</a></li>
                 <li><a href="#" class="hover:text-blue-600">Services</a></li>
@@ -105,8 +105,7 @@
                         <li>Shift management</li>
                         <li>Site password protection</li>
                     </ul>
-                    <a href="{{ route('choose.lite') }}"
-                        class="mt-6 w-full bg-blue-100 py-2 rounded block text-center">
+                    <a href="{{ route('choose.lite') }}" class="mt-6 w-full bg-blue-100 py-2 rounded block text-center">
                         Upgrade plan
                     </a>
                 </div>
@@ -123,8 +122,7 @@
                         <li>White labeling</li>
                         <li>Site Password protection</li>
                     </ul>
-                    <a href="{{ route('choose.pro') }}"
-                        class="mt-6 w-full bg-blue-100 py-2 rounded block text-center">
+                    <a href="{{ route('choose.pro') }}" class="mt-6 w-full bg-blue-100 py-2 rounded block text-center">
                         Upgrade plan
                     </a>
                 </div>
@@ -132,8 +130,6 @@
             </div>
         </section>
         <!-- END: Pricing Plans Section -->
-
-
 
         <!-- START: SEO Agency Section -->
         <section class="bg-blue-200 py-20 px-8">
@@ -197,8 +193,8 @@
         <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             <!-- Logo dan Sosial Media -->
             <div class="space-y-4">
-                <img src="/Img/hris-logo.svg" alt="Logo HRIS" class="h-8">
-                <p class="text-sm">Copyright © 2020 Nexcent ltd.<br>All rights reserved</p>
+                <img src="{{ asset('img/logo/Logo HRIS-1.png') }}" alt="Logo HRIS" class="h-8">
+                <p class="text-sm">Copyright © 2025 Nexcent ltd.<br>All rights reserved</p>
                 <div class="flex space-x-3">
                     <a href="#"><i class="fa-brands fa-instagram text-xl"></i></a>
                     <a href="#"><i class="fa-brands fa-dribbble text-xl"></i></a>
