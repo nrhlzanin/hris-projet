@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Checklock - Add Checkbox</title>
@@ -7,112 +8,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100 min-h-screen">
-    <div class="flex h-screen">
-      <!-- Sidebar -->
-      <aside class="w-20 bg-blue-200 flex flex-col items-center py-6 shadow-md" style="margin-top: 64px;">
-          <div class="h-screen w-16 bg-blue-200 flex flex-col items-center py-4">
-              <!-- Icons di atas -->
-              <nav class="flex flex-col space-y-6">
-                  <a href="#" class="hover:text-blue-500"><i class="ri-dashboard-line text-2xl"></i></a>
-                  <a href="#" class="hover:text-blue-500"><i class="ri-user-3-line text-2xl"></i></a>
-                  <a href="#" class="hover:text-blue-500"><i class="ri-time-line text-2xl"></i></a>
-                  <a href="#" class="hover:text-blue-500"><i class="ri-calendar-line text-2xl"></i></a>
-                  <a href="#" class="hover:text-blue-500"><i class="ri-bar-chart-box-line text-2xl"></i></a>
-              </nav>
-  
-              <!-- Spacer flex-1 untuk dorong ke bawah -->
-              <div class="flex-1"></div>
-  
-              <!-- Icons di bawah -->
-              <nav class="flex flex-col space-y-6">
-                  <a href="#" class="hover:text-blue-500"><i class="ri-customer-service-2-line text-2xl"></i></a>
-                  <a href="#" class="hover:text-blue-500"><i class="ri-settings-3-line text-2xl"></i></a>
-              </nav>
-          </div>
-      </aside>
-  
-      <!-- Main content -->
-      <div class="flex-1 flex flex-col">
-  
-          <!-- Top Navbar -->
-          <nav class="bg-white px-6 py-4 flex items-center justify-between shadow w-full fixed top-0 left-0 z-10">
-              <!-- Logo di kiri -->
-              <div class="flex items-center space-x-4">
-                  <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-10">
-                  <h1 class="text-xl font-bold pl-6">Employee Database</h1>
-              </div>
-  
-              <!-- Input pencarian di tengah -->
-              <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center">
-                  <input type="text" placeholder="Search"
-                         class="w-[400px] px-6 py-3 border rounded-l-lg focus:outline-none focus:ring focus:border-blue-300">
-                  <button class="bg-blue-500 text-white px-4 py-3 rounded-r-lg hover:bg-blue-600">
-                      <i class="ri-search-line"></i>
-                  </button>
-              </div>
-  
-              <!-- Bagian kanan (opsional, jika ada) -->
-              <div class="flex items-center space-x-4">
-                  <button>
-                      <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
-                           viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                      </svg>
-                  </button>
-                  <div class="relative">
-                      <button class="flex items-center space-x-2 focus:outline-none" id="userMenuButton">
-                          <div class="w-8 h-8 rounded-full bg-blue-800"></div>
-                          <div class="text-sm text-gray-700">
-                              <div>username</div>
-                          </div>
-                          <i class="ri-arrow-down-s-line"></i>
-                      </button>
-                  </div>
-              </div>
-          </nav>
-      <!-- Form -->
-      <div class="p-6 mt-20">
-</head>
-<body class="bg-gray-100 min-h-screen">
-    <div class="flex h-screen">
-    <!-- Sidebar -->
-    <aside class="w-20 bg-blue-200 flex flex-col items-center py-6 space-y-6 shadow-md">
-      <a href="#"><img src="/icons/dashboard.svg" class="w-6 h-6" /></a>
-      <a href="#"><img src="/icons/employees.svg" class="w-6 h-6" /></a>
-      <a href="#"><img src="/icons/clock.svg" class="w-6 h-6" /></a>
-      <a href="#"><img src="/icons/calendar.svg" class="w-6 h-6" /></a>
-      <a href="#"><img src="/icons/report.svg" class="w-6 h-6" /></a>
-      <a href="#"><img src="/icons/support.svg" class="w-6 h-6" /></a>
-      <a href="#" class="mt-auto"><img src="/icons/setting.svg" class="w-6 h-6" /></a>
-    </aside>
+  <div class="flex h-screen">
+
+    {{-- Sidebar --}}
+    @include('components.sidebar')
 
     <!-- Main content -->
     <div class="flex-1 flex flex-col">
-      <!-- Navbar -->
-      <nav class="bg-white px-6 py-4 flex items-center justify-between shadow">
-        <h1 class="text-xl font-bold">Checklock</h1>
-        <div class="flex items-center space-x-4">
-          <button>
-            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
-                 viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-            </svg>
-          </button>
-          <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 rounded-full bg-blue-800"></div>
-            <div class="text-sm text-gray-700">
-              <div>username</div>
-              <div class="text-xs text-gray-500">roles user</div>
-            </div>
-          </div>
-        </div>
-      </nav>
+
+      {{-- Navbar --}}
+      @include('components.navbar')
 
       <!-- Form -->
-      <div class="p-6">
+      <div class="p-6 mt-20">
         <div class="bg-white rounded shadow p-6">
           <h2 class="text-2xl font-semibold mb-4">Add Checkbox</h2>
           <div class="grid grid-cols-2 gap-6">
@@ -120,6 +30,7 @@
             <div class="space-y-4">
               <div>
                 <label class="block text-sm font-medium">Select Employees</label>
+                <!-- You can add the select input for employees here -->
               </div>
               <div>
                 <label class="block text-sm font-medium">Absent Type</label>
@@ -182,4 +93,5 @@
     </div>
   </div>
 </body>
+
 </html>

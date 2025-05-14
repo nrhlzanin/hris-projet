@@ -40,8 +40,8 @@ Route::get('/auth/link-expired', function () {
 
 // Dashboard
 Route::get('/admin-dashboard', function () {
-    return view('dasbord.admin_dashboard');
-})->name('admin_dashboard');
+    return view('dasbord.admin-dashboard');
+})->name('admin-dashboard');
 
 // Employee
 Route::get('/employee-database', function () {
