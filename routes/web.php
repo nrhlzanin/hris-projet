@@ -47,14 +47,18 @@ Route::get('/set-new-password', function () {
     return view('auth.set-new-password');
 })->name('set.new.password');
 
-Route::get('/auth/link-expired', function () {
+Route::get('/link-expired', function () {
     return view('auth.link-expired');
 })->name('link.expired');
+
+Route::get('/password-update', function () {
+    return view('auth.password-update');
+})->name('password.update');
 
 // Dashboard
 Route::get('/admin-dashboard', function () {
     return view('dasbord.admin-dashboard');
-})->name('admin-dashboard');
+})->name('admin.dashboard');
 
 // Employee
 Route::get('/employee-database', function () {
@@ -70,16 +74,16 @@ Route::post('/employees', [EmployeeController::class, 'store'])->name('employees
 // Checklock
 Route::get('/user-checklock', function () {
     return view('checklock.user_checklock');
-})->name('user_checklock');
+})->name('user.checklock');
 
 Route::get('/user-absensi', function () {
     return view('checklock.user_absensi');
-})->name('user_absensi');
+})->name('user.absensi');
 
 Route::get('/admin-checklock', function () {
     return view('checklock.admin_checklock');
-})->name('admin_checklock');
+})->name('admin.checklock');
 
 Route::get('/admin-absensi', function () {
     return view('checklock.admin_absensi');
-})->name('admin_absensi');
+})->name('admin.absensi');
