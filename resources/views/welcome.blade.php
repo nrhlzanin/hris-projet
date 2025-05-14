@@ -20,7 +20,7 @@
     <!-- Navbar -->
     <nav class="flex items-center justify-between px-8 py-4 shadow bg-white">
         <div class="flex items-center space-x-4">
-            <img src="\img\logo.png" alt="Logo" class="h-8 w-4" />
+            <img src="{{ asset('img/logo/Vector HRIS.png') }}" alt="Logo" class="h-8 w-4" />
             <ul class="flex space-x-8 text-sm font-medium text-gray-700">
                 <li><a href="#" class="hover:text-blue-600">Home</a></li>
                 <li><a href="#" class="hover:text-blue-600">Services</a></li>
@@ -56,116 +56,82 @@
         </div>
 
         <!-- Pricing Plans Section -->
-        <section class="py-20 text-center">
-          <h2 class="py-3 text-5xl font-bold mb-10 text-gray-1000" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);">
-              HRIS Pricing Plans
-          </h2>
-  
-          <p class="text-gray-800 mb-10">
-              <span class="block">Choose the plan that best suits your business!</span>
-              <span class="block">This HRIS offers both subscription and pay-as-you-go payment options,</span>
-              <span class="block">available in the following packages:</span>
-          </p>
-  
-          <!-- Toggle Buttons -->
-          <div class="flex justify-center mt-6 mb-10">
-              <div class="relative flex bg-white shadow-md rounded-full overflow-hidden w-80">
-                  <!-- Hidden Radio Inputs to Control Active State -->
-                  <input type="radio" name="tab" id="package" class="hidden peer/package" checked>
-                  <input type="radio" name="tab" id="seat" class="hidden peer/seat">
-  
-                  <!-- Sliding Background -->
-                  <div
-                      class="absolute top-0 left-0 h-full w-1/2 bg-[#1D395E] rounded-full transition-all duration-300 peer-checked/seat:translate-x-full">
-                  </div>
-  
-                  <!-- Package Button -->
-                  <label for="package"
-                      class="relative z-10 w-1/2 py-3 text-sm font-semibold text-center cursor-pointer transition-all peer-checked/seat:text-gray-700 peer-checked/package:text-white">
-                      Package
-                  </label>
-  
-                  <!-- Seat Button -->
-                  <label for="seat"
-                      class="relative z-10 w-1/2 py-3 text-sm font-semibold text-center cursor-pointer transition-all peer-checked/package:text-gray-700 peer-checked/seat:text-white">
-                      Seat
-                  </label>
-              </div>
-          </div>
-  
-  
-  
-  
-  
-  
-          <!-- Pricing Cards -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
-              <!-- Starter Plan with Linear Gradient -->
-              <div class="bg-gradient-to-l from-[#1D395E] to-[#3C77C4] text-white rounded-xl shadow-lg p-8">
-                  <h3 class="text-2xl font-semibold text-left">Starter</h3>
-                  <p class="text-4xl font-bold text-left">Free</p>
-                  <!-- Horizontal Line (Divider) -->
-                  <hr class="border-t-2 border-white my-4">
-                  <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
-                      <li>GPS-based attendance validation</li>
-                      <li>Employee data management</li>
-                      <li>Leave and time-off request</li>
-                      <li>Overtime management</li>
-                      <li>Fixed work schedule management</li>
-                      <li>Automatic fixed calculation</li>
-                  </ul>
-                  <button
-                      class="mt-6 w-full bg-[#2D8DFE] text-white font-bold py-3 rounded-lg hover:bg-[#2278D2] transition">Current
-                      Plan</button>
-              </div>
-  
-  
-              <!-- Lite Plan (Recommended) - Fixed to Match Image -->
-              <div class="bg-[#2E2E3A] text-white rounded-xl shadow-lg p-8">
-                  <h3 class="text-2xl font-semibold text-left">Lite <span class="text-sm text-left">(Recommended)</span>
-                  </h3>
-                  <p class="text-4xl font-bold text-left">$15 <span class="text-lg text-left">/year</span></p>
-                  <!-- Horizontal Line (Divider) -->
-                  <hr class="border-t-2 border-white my-4">
-                  <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
-                      <li>All standard features</li>
-                      <li>Clock-in clock-out attendance settings</li>
-                      <li>Employee document management</li>
-                      <li>Sick leave & time-out settings</li>
-                      <li>Shift management</li>
-                      <li>Site password protection</li>
-                  </ul>
-                  <a href="{{ route('choose.lite') }}"
-                      class="mt-6 w-full bg-white text-blue-500 font-bold py-3 rounded-lg hover:bg-gray-200 transition block text-center">
-                      Upgrade Plan
-                  </a>
-  
-              </div>
-  
-              <!-- Pro Plan -->
-              <div class="bg-gradient-to-l from-[#7CA5BF] to-[#3A4D59] text-white rounded-xl shadow-lg p-8">
-                  <h3 class="text-2xl font-semibold text-left">Pro</h3>
-                  <p class="text-4xl font-bold text-left">$35 <span class="text-lg text-left">/year</span></p>
-                  <!-- Horizontal Line (Divider) -->
-                  <hr class="border-t-2 border-white my-4">
-                  <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
-                      <li>2 Projects</li>
-                      <li>Client billing</li>
-                      <li>Free staging</li>
-                      <li>Code export</li>
-                      <li>White labeling</li>
-                      <li>Site Password protection</li>
-                  </ul>
-                  <a href="{{ route('choose.pro') }}"
-                      class="mt-6 w-full bg-white text-blue-500 font-bold py-3 rounded-lg hover:bg-gray-200 transition block text-center">
-                      Upgrade Plan
-                  </a>
-              </div>
-          </div>
-      </section>
+        <section class="py-28 text-center">
+            <h2 class="text-4xl font-bold mb-2">HRIS Pricing Plans</h2>
+            <p class="text-gray-700 mb-8">Choose the plan that best suits your business. This HRIS offers both
+                subscription and pay-as-you-go payment options.</p>
+
+            <div class="flex justify-center mt-6 mb-10">
+                <div class="flex bg-white shadow-md rounded-full overflow-hidden">
+                    <button
+                        class="w-32 lg:w-40 py-2 lg:py-3  text-sm font-semibold text-gray-700 hover:bg-blue-100 focus:outline-none"
+                        :class="{ 'bg-blue-500 text-white': activeTab === 'package' }" @click="activeTab = 'package'">
+                        Package
+                    </button>
+                    <button
+                        class="w-32 lg:w-40 py-2 lg:py-3 text-sm font-semibold text-gray-700 hover:bg-blue-100 focus:outline-none"
+                        :class="{ 'bg-blue-500 text-white': activeTab === 'seat' }" @click="activeTab = 'seat'">
+                        Seat
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-h-lg max-w-6xl mx-auto px-6">
+                <!-- Starter -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-xl font-semibold">Starter</h3>
+                    <p class="text-3xl font-bold">Free</p>
+                    <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
+                        <li>GPS based attendance</li>
+                        <li>Overtime management</li>
+                        <li>Leave and time-off request</li>
+                        <li>Employee data management</li>
+                        <li>FIxed work schedule management</li>
+                        <li>Automatic fixed calculation</li>
+                    </ul>
+                    <button class="mt-6 w-full bg-blue-100 py-2 rounded">Current Plan</button>
+                </div>
+
+                <!-- Lite -->
+                <div class="bg-gray-900 text-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold">Lite <span class="text-sm">(Recommended)</span></h3>
+                    <p class="text-3xl font-bold">$15 <span class="text-base">/year</span></p>
+                    <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
+                        <li>All standard features</li>
+                        <li>Clock-in clock-out attendance settings</li>
+                        <li>Employee document management</li>
+                        <li>Sick leave & time-out settings</li>
+                        <li>Shift management</li>
+                        <li>Site password protection</li>
+                    </ul>
+                    <a href="{{ route('choose.lite') }}"
+                        class="mt-6 w-full bg-blue-100 py-2 rounded block text-center">
+                        Upgrade plan
+                    </a>
+                </div>
+
+                <!-- Pro -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-xl font-semibold">Pro</h3>
+                    <p class="text-3xl font-bold">$35 <span class="text-base">/year</span></p>
+                    <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
+                        <li>2 Project</li>
+                        <li>Client billing</li>
+                        <li>Free staging</li>
+                        <li>Code export</li>
+                        <li>White labeling</li>
+                        <li>Site Password protection</li>
+                    </ul>
+                    <a href="{{ route('choose.pro') }}"
+                        class="mt-6 w-full bg-blue-100 py-2 rounded block text-center">
+                        Upgrade plan
+                    </a>
+                </div>
+
+            </div>
+        </section>
         <!-- END: Pricing Plans Section -->
-
-
 
         <!-- START: SEO Agency Section -->
         <section class="bg-blue-200 py-20 px-8">
@@ -229,8 +195,8 @@
         <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             <!-- Logo dan Sosial Media -->
             <div class="space-y-4">
-                <img src="/Img/hris-logo.svg" alt="Logo HRIS" class="h-8">
-                <p class="text-sm">Copyright © 2020 Nexcent ltd.<br>All rights reserved</p>
+                <img src="{{ asset('img/logo/Logo HRIS-1.png') }}" alt="Logo HRIS" class="h-8">
+                <p class="text-sm">Copyright © 2025 Nexcent ltd.<br>All rights reserved</p>
                 <div class="flex space-x-3">
                     <a href="#"><i class="fa-brands fa-instagram text-xl"></i></a>
                     <a href="#"><i class="fa-brands fa-dribbble text-xl"></i></a>

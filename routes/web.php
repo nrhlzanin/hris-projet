@@ -53,8 +53,8 @@ Route::get('/auth/link-expired', function () {
 
 // Dashboard
 Route::get('/admin-dashboard', function () {
-    return view('dasbord.admin_dashboard');
-})->name('admin_dashboard');
+    return view('dasbord.admin-dashboard');
+})->name('admin-dashboard');
 
 // Employee
 Route::get('/employee-database', function () {
@@ -64,6 +64,8 @@ Route::get('/employee-database', function () {
 Route::get('/new-employee', function () {
     return view('employee.new-employee');
 })->name('new.employee');
+
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
 
 // Checklock
 Route::get('/user-checklock', function () {
