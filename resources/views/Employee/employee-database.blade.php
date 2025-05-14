@@ -14,43 +14,44 @@
     @include('components.sidebar')
     
     <!-- Main content -->
-    <div class="flex-1 flex flex-col">
-
+    <div class="flex-1 flex flex-col ml-20">
+        
         {{-- Navbar --}}
         @include('components.navbar')
+        
+        <!-- Content Wrapper -->
+        <div class="flex-1 flex flex-col items-center justify-start px-4 sm:px-6 py-6">
+            <!-- Summary Info -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-6xl">
+                <div class="bg-white shadow rounded-lg p-4">
+                    <div class="text-gray-600 text-sm">Periode</div>
+                    <div class="text-lg font-bold">Bulan Tahun</div>
+                </div>
+                <div class="bg-white shadow rounded-lg p-4">
+                    <div class="text-gray-600 text-sm">Total Employee</div>
+                    <div class="text-2xl font-bold">208</div>
+                </div>
+                <div class="bg-white shadow rounded-lg p-4">
+                    <div class="text-gray-600 text-sm">Total New Hire</div>
+                    <div class="text-2xl font-bold">20</div>
+                </div>
+                <div class="bg-white shadow rounded-lg p-4">
+                    <div class="text-gray-600 text-sm">Full Time Employee</div>
+                    <div class="text-2xl font-bold">20</div>
+                </div>
+            </div>
 
-        <!-- Summary Info -->
-        <div class="grid grid-cols-4 gap-4 p-6 mt-16">
-            <div class="bg-white shadow rounded-lg p-4">
-                <div class="text-gray-600 text-sm">Periode</div>
-                <div class="text-lg font-bold">Bulan Tahun</div>
-            </div>
-            <div class="bg-white shadow rounded-lg p-4">
-                <div class="text-gray-600 text-sm">Total Employee</div>
-                <div class="text-2xl font-bold">208</div>
-            </div>
-            <div class="bg-white shadow rounded-lg p-4">
-                <div class="text-gray-600 text-sm">Total New Hire</div>
-                <div class="text-2xl font-bold">20</div>
-            </div>
-            <div class="bg-white shadow rounded-lg p-4">
-                <div class="text-gray-600 text-sm">Full Time Employee</div>
-                <div class="text-2xl font-bold">20</div>
-            </div>
-        </div>
-
-        <!-- Table + Action -->
-        <div class="px-6">
-            <div class="bg-white rounded-lg shadow p-4">
-                <div class="flex justify-between items-center mb-4">
+            <!-- Table + Action -->
+            <div class="bg-white rounded-lg shadow p-4 w-full max-w-6xl mt-6">
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-4 space-y-4 sm:space-y-0">
                     <h2 class="text-lg font-semibold">All Employees Information</h2>
-                    <div class="flex space-x-2">
+                    <div class="flex flex-wrap gap-2">
                         <input type="text" placeholder="Search Employee"
-                               class="px-3 py-2 border rounded-md focus:ring focus:border-blue-300">
-                        <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Filter</button>
-                        <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Import</button>
-                        <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Export</button>
-                        <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                               class="px-3 py-2 border rounded-md focus:ring focus:border-blue-300 w-full sm:w-auto">
+                        <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 w-full sm:w-auto">Filter</button>
+                        <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 w-full sm:w-auto">Import</button>
+                        <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 w-full sm:w-auto">Export</button>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                             <a href="{{ route('new.employee') }}">+ Add Data</a>
                         </button>
                     </div>
@@ -120,7 +121,7 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="mt-4 flex justify-between items-center text-sm text-gray-500">
+                <div class="mt-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500 space-y-4 sm:space-y-0">
                     <div>Showing <select class="border rounded px-1 py-0.5 ml-1"><option>10</option></select> out of 60 records</div>
                     <div class="flex items-center space-x-2">
                         <button class="px-2 py-1 border rounded">1</button>

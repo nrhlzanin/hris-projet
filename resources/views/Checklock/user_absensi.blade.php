@@ -9,44 +9,16 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-100">
     <div class="flex h-screen">
-        <!-- Sidebar -->
-        <div class="w-1/5 bg-blue-500 text-white h-screen p-4">
-            @include('components.sidebar')
+    <!-- Sidebar -->
+    @include('components.sidebar')
 
-            <!-- Form in Sidebar -->
-            <div class="mt-6">
-                <h2 class="text-lg font-semibold mb-4">Quick Add Absence</h2>
-                <form>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium">Employee</label>
-                            <select class="w-full border rounded px-3 py-2">
-                                <option>Choose Employee</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium">Absent Type</label>
-                            <select class="w-full border rounded px-3 py-2">
-                                <option>Choose Absent Type</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium">Date</label>
-                            <input type="date" class="w-full border rounded px-3 py-2">
-                        </div>
-                        <button class="w-full bg-white text-blue-500 px-4 py-2 rounded mt-2">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Main content -->
-        <div class="ml-20 w-full px-4 lg:px-20">
-
-            <!-- Navbar -->
-            @include('components.navbar')
+    <!-- Main content -->
+    <div class="flex-1 flex flex-col ml-20">
+        
+        <!-- Navbar -->
+        @include('components.navbar')
 
             <!-- Add Checkbox Form Card -->
             <div class="bg-white p-6 rounded-lg shadow-md w-full mt-6">

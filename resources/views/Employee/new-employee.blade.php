@@ -79,9 +79,10 @@
                         <div class="w-24 h-24 bg-blue-800 rounded flex items-center justify-center">
                             <span class="text-white text-sm">Foto</span>
                         </div>
-                        <button type="button" class="ml-4 px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
+                        <label for="photo" class="ml-4 px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 cursor-pointer">
                             + Upload Foto
-                        </button>
+                            <input type="file" id="photo" name="photo" accept="image/jpeg,image/png" class="hidden">
+                        </label>
                     </div>
                     <div>
                         <label for="first_name" class="block text-sm font-medium text-gray-600">First Name</label>
@@ -176,7 +177,7 @@
                         </select>
                     </div>
                     <div class="col-span-2 flex justify-end space-x-4">
-                        <button type="button" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Cancel</button>
+                        <a href="{{ route('employee.database') }}" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Cancel</a>
                         <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Save</button>
                     </div>
                 </form>
