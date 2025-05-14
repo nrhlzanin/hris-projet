@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// Pricing Page
+Route::get('/pricing-plans', function () {
+    return view('plans.pricing-plans');
+})->name('pricing.plans');
+
+Route::get('/choose-pro', function () {
+    return view('plans.choose-pro');
+})->name('choose.pro');
+
+Route::get('/choose-lite', function () {
+    return view('plans.choose-lite');
+})->name('choose.lite');
+
 // Onboarding Pages
 Route::get('/get-started', function () {
     return view('auth.get-started');
@@ -41,7 +54,7 @@ Route::get('/set-new-password', function () {
     return view('auth.set-new-password');
 })->name('set.new.password');
 
-Route::get('/auth/link-expired', function () {
+Route::get('/link-expired', function () {
     return view('auth.link-expired');
 })->name('link.expired');
 
@@ -53,10 +66,14 @@ Route::post('/get-started', [RegisterController::class, 'register'])->name('sign
 Route::get('/auth/google/redirect', [RegisterController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [RegisterController::class, 'handleGoogleCallback'])->name('google.callback');
 
+Route::get('/password-update', function () {
+    return view('auth.password-update');
+})->name('password.update');
+
 // Dashboard
 Route::get('/admin-dashboard', function () {
-    return view('dasbord.admin_dashboard');
-})->name('admin_dashboard');
+    return view('dasbord.admin-dashboard');
+})->name('admin.dashboard');
 
 // Employee
 Route::get('/employee-database', function () {
@@ -67,19 +84,21 @@ Route::get('/new-employee', function () {
     return view('employee.new-employee');
 })->name('new.employee');
 
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+
 // Checklock
 Route::get('/user-checklock', function () {
     return view('checklock.user_checklock');
-})->name('user_checklock');
+})->name('user.checklock');
 
 Route::get('/user-absensi', function () {
     return view('checklock.user_absensi');
-})->name('user_absensi');
+})->name('user.absensi');
 
 Route::get('/admin-checklock', function () {
     return view('checklock.admin_checklock');
-})->name('admin_checklock');
+})->name('admin.checklock');
 
 Route::get('/admin-absensi', function () {
     return view('checklock.admin_absensi');
-})->name('admin_absensi');
+})->name('admin.absensi');
