@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AdminController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\AdminController;
 Route::get('/supabase-test', function () {
     return DB::select('SELECT NOW()');
 });
+=======
+>>>>>>> c14bf6b5eb3c242e549e291d8312bc2e48775ad1
 
 // Landing Page
 Route::get('/', function () {
@@ -59,20 +62,16 @@ Route::get('/link-expired', function () {
     return view('auth.link-expired');
 })->name('link.expired');
 
-// Route untuk Sign Up
-Route::get('/get-setarted', [RegisterController::class, 'showSignUpForm'])->name('sign.up');
-Route::post('/get-started', [RegisterController::class, 'register'])->name('sign.up.post');
-
-// Route untuk Google Sign Up
-Route::get('/auth/google/redirect', [RegisterController::class, 'redirectToGoogle'])->name('google.redirect');
-Route::get('/auth/google/callback', [RegisterController::class, 'handleGoogleCallback'])->name('google.callback');
-
 Route::get('/password-update', function () {
     return view('auth.password-update');
 })->name('password.update');
 
 // Dashboard
 Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
+
+Route::get('/user-dashboard', function () {
+    return view('dasbord.user-dashboard');
+})->name('user.dashboard');
 
 // Employee
 Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
