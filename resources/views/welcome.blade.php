@@ -57,114 +57,197 @@
 
         <!-- Pricing Plans Section -->
         <section class="py-28 text-center">
-            <h2 class="text-4xl font-bold mb-2">HRIS Pricing Plans</h2>
-            <p class="text-gray-700 mb-8">Choose the plan that best suits your business. This HRIS offers both
-                subscription and pay-as-you-go payment options.</p>
+            <h2 class="py-3 text-5xl font-bold mb-10 text-gray-1000" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);">
+                HRIS Pricing Plans
+            </h2>
 
+            <p class="text-gray-800 mb-10">
+                <span class="block">Choose the plan that best suits your business!</span>
+                <span class="block">This HRIS offers both subscription and pay-as-you-go payment options,</span>
+                <span class="block">available in the following packages:</span>
+            </p>
+
+            <!-- Toggle Buttons (Design/Animation per provided snippet) -->
             <div class="flex justify-center mt-6 mb-10">
-                <div class="flex bg-white shadow-md rounded-full overflow-hidden">
-                    <button
-                        class="w-32 lg:w-40 py-2 lg:py-3  text-sm font-semibold text-gray-700 hover:bg-blue-100 focus:outline-none"
-                        :class="{ 'bg-blue-500 text-white': activeTab === 'package' }" @click="activeTab = 'package'">
+                <div class="relative flex bg-white shadow-md rounded-full overflow-hidden w-80">
+                    <!-- Hidden Radio Inputs to Control Active State -->
+                    <input type="radio" name="tab" id="package" class="hidden" checked>
+                    <input type="radio" name="tab" id="seat" class="hidden">
+
+                    <!-- Sliding Background (Dark Blue #1D395E) with transform support -->
+                    <div id="slidingBg"
+                        class="absolute top-0 left-0 h-full w-1/2 bg-[#1D395E] rounded-full transform transition-all duration-300">
+                    </div>
+
+                    <!-- Package Button -->
+                    <label for="package" id="packageLabel"
+                        class="relative z-10 w-1/2 py-3 text-sm font-semibold text-center cursor-pointer transition-all text-white">
                         Package
-                    </button>
-                    <button
-                        class="w-32 lg:w-40 py-2 lg:py-3 text-sm font-semibold text-gray-700 hover:bg-blue-100 focus:outline-none"
-                        :class="{ 'bg-blue-500 text-white': activeTab === 'seat' }" @click="activeTab = 'seat'">
+                    </label>
+
+                    <!-- Seat Button -->
+                    <label for="seat" id="seatLabel"
+                        class="relative z-10 w-1/2 py-3 text-sm font-semibold text-center cursor-pointer transition-all text-gray-700">
                         Seat
-                    </button>
+                    </label>
                 </div>
             </div>
 
+            <!-- Pricing Cards Container (with a static min height) -->
+            <div id="pricingCardsContainer" class="min-h-[600px]">
+                <!-- Package Cards Group (shown by default) -->
+                <div id="packageCards" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+                    <!-- Starter Plan with Linear Gradient -->
+                    <div class="bg-gradient-to-l from-[#1D395E] to-[#3C77C4] text-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-semibold text-left">Starter</h3>
+                        <p class="text-4xl font-bold text-left">Free</p>
+                        <hr class="border-t-2 border-white my-4">
+                        <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
+                            <li>GPS-based attendance validation</li>
+                            <li>Employee data management</li>
+                            <li>Leave and time-off request</li>
+                            <li>Overtime management</li>
+                            <li>Fixed work schedule management</li>
+                            <li>Automatic fixed calculation</li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full bg-[#2D8DFE] text-white font-bold py-3 rounded-lg hover:bg-[#2278D2] transition">
+                            Current Plan
+                        </button>
+                    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-h-lg max-w-6xl mx-auto px-6">
-                <!-- Starter -->
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="text-xl font-semibold">Starter</h3>
-                    <p class="text-3xl font-bold">Free</p>
-                    <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
-                        <li>GPS based attendance</li>
-                        <li>Overtime management</li>
-                        <li>Leave and time-off request</li>
-                        <li>Employee data management</li>
-                        <li>FIxed work schedule management</li>
-                        <li>Automatic fixed calculation</li>
-                    </ul>
-                    <button class="mt-6 w-full bg-blue-100 py-2 rounded">Current Plan</button>
+                    <!-- Lite Plan (Recommended) -->
+                    <div class="bg-[#2E2E3A] text-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-semibold text-left">Lite <span class="text-sm">(Recommended)</span>
+                        </h3>
+                        <p class="text-4xl font-bold text-left">$15 <span class="text-lg">/year</span></p>
+                        <hr class="border-t-2 border-white my-4">
+                        <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
+                            <li>All standard features</li>
+                            <li>Clock-in clock-out attendance settings</li>
+                            <li>Employee document management</li>
+                            <li>Sick leave & time-out settings</li>
+                            <li>Shift management</li>
+                            <li>Site password protection</li>
+                        </ul>
+                        <a href="{{ route('choose.lite') }}"
+                            class="mt-6 w-full bg-white text-blue-500 font-bold py-3 rounded-lg hover:bg-gray-200 transition block text-center">
+                            Upgrade Plan
+                        </a>
+                    </div>
+
+                    <!-- Pro Plan -->
+                    <div class="bg-gradient-to-l from-[#7CA5BF] to-[#3A4D59] text-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-semibold text-left">Pro</h3>
+                        <p class="text-4xl font-bold text-left">$35 <span class="text-lg">/year</span></p>
+                        <hr class="border-t-2 border-white my-4">
+                        <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
+                            <li>2 Projects</li>
+                            <li>Client billing</li>
+                            <li>Free staging</li>
+                            <li>Code export</li>
+                            <li>White labeling</li>
+                            <li>Site password protection</li>
+                        </ul>
+                        <a href="{{ route('choose.pro') }}"
+                            class="mt-6 w-full bg-white text-blue-500 font-bold py-3 rounded-lg hover:bg-gray-200 transition block text-center">
+                            Upgrade Plan
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Lite -->
-                <div class="bg-gray-900 text-white rounded-lg shadow-lg p-6">
-                    <h3 class="text-xl font-semibold">Lite <span class="text-sm">(Recommended)</span></h3>
-                    <p class="text-3xl font-bold">$15 <span class="text-base">/year</span></p>
-                    <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
-                        <li>All standard features</li>
-                        <li>Clock-in clock-out attendance settings</li>
-                        <li>Employee document management</li>
-                        <li>Sick leave & time-out settings</li>
-                        <li>Shift management</li>
-                        <li>Site password protection</li>
-                    </ul>
-                    <a href="{{ route('choose.lite') }}" class="mt-6 w-full bg-blue-100 py-2 rounded block text-center">
-                        Upgrade plan
-                    </a>
-                </div>
+                <!-- Seat Cards Group (initially hidden) -->
+                <div id="seatCards" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6 hidden">
+                    <!-- Standard Seat Plan -->
+                    <div class="bg-gradient-to-l from-[#1D395E] to-[#3C77C4] text-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-semibold text-left">Standard Seat</h3>
+                        <p class="text-4xl font-bold text-left">$5 <span class="text-lg">/seat</span></p>
+                        <hr class="border-t-2 border-white my-4">
+                        <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
+                            <li>Basic access</li>
+                            <li>Time tracking</li>
+                            <li>Email support</li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full bg-[#2D8DFE] text-white font-bold py-3 rounded-lg hover:bg-[#2278D2] transition">
+                            Select Seat
+                        </button>
+                    </div>
 
-                <!-- Pro -->
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="text-xl font-semibold">Pro</h3>
-                    <p class="text-3xl font-bold">$35 <span class="text-base">/year</span></p>
-                    <ul class="mt-4 text-sm text-left list-disc list-inside space-y-2">
-                        <li>2 Project</li>
-                        <li>Client billing</li>
-                        <li>Free staging</li>
-                        <li>Code export</li>
-                        <li>White labeling</li>
-                        <li>Site Password protection</li>
-                    </ul>
-                    <a href="{{ route('choose.pro') }}" class="mt-6 w-full bg-blue-100 py-2 rounded block text-center">
-                        Upgrade plan
-                    </a>
-                </div>
+                    <!-- Premium Seat Plan -->
+                    <div class="bg-gradient-to-l from-[#7CA5BF] to-[#3A4D59] text-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-semibold text-left">Premium Seat</h3>
+                        <p class="text-4xl font-bold text-left">$10 <span class="text-lg">/seat</span></p>
+                        <hr class="border-t-2 border-white my-4">
+                        <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
+                            <li>Advanced access</li>
+                            <li>Priority support</li>
+                            <li>Detailed reports</li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full bg-[#2D8DFE] text-white font-bold py-3 rounded-lg hover:bg-[#2278D2] transition">
+                            Select Seat
+                        </button>
+                    </div>
 
+                    <!-- Enterprise Seat Plan -->
+                    <div class="bg-[#2E2E3A] text-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-semibold text-left">Enterprise Seat</h3>
+                        <p class="text-4xl font-bold text-left">$15 <span class="text-lg">/seat</span></p>
+                        <hr class="border-t-2 border-white my-4">
+                        <ul class="mt-6 text-sm text-left list-disc list-inside space-y-2">
+                            <li>Full feature access</li>
+                            <li>Dedicated support</li>
+                            <li>Custom integrations</li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full bg-[#2D8DFE] text-white font-bold py-3 rounded-lg hover:bg-[#2278D2] transition">
+                            Select Seat
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
-        <!-- END: Pricing Plans Section -->
 
-        <!-- START: SEO Agency Section -->
-        <section class="bg-blue-200 py-20 px-8">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-                <div class="h-60 bg-gray-300 rounded-md"></div>
-                <div>
-                    <h2 class="text-4xl font-bold mb-4">cmlabs SEO Agency Indonesia</h2>
-                    <p class="text-gray-800 text-lg leading-relaxed">cmlabs is a global SEO agency that offers its
-                        services in Indonesia. We help businesses achieve optimal visibility on search engine results
-                        pages (SERPs). With attentive website optimization and impactful digital marketing solutions, we
-                        will be your guide to a sustainable and authoritative online presence!</p>
-                    <h3 class="mt-6 text-xl font-bold">Widely Available in These Countries</h3>
-                </div>
-            </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const packageRadio = document.getElementById('package');
+                const seatRadio = document.getElementById('seat');
+                const packageLabel = document.getElementById('packageLabel');
+                const seatLabel = document.getElementById('seatLabel');
+                const slidingBg = document.getElementById('slidingBg');
+                const packageCards = document.getElementById('packageCards');
+                const seatCards = document.getElementById('seatCards');
 
-            <!-- Stats Block -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 text-center">
-                <div class="bg-black text-white py-6 rounded">
-                    <p class="text-2xl font-bold">314,566,114+</p>
-                    <p>Total Engagement</p>
-                </div>
-                <div class="bg-black text-white py-6 rounded">
-                    <p class="text-2xl font-bold">15.425</p>
-                    <p>Avg Keyword Rank</p>
-                </div>
-                <div class="bg-black text-white py-6 rounded">
-                    <p class="text-2xl font-bold">20,836+</p>
-                    <p>Content Produced</p>
-                </div>
-                <div class="bg-black text-white py-6 rounded">
-                    <p class="text-2xl font-bold">9,185,238,642+</p>
-                    <p>Total Reach</p>
-                </div>
-            </div>
-        </section>
+                function updateToggle() {
+                    if (seatRadio.checked) {
+                        slidingBg.style.transform = 'translateX(100%)';
+                        packageLabel.classList.remove('text-white');
+                        packageLabel.classList.add('text-gray-700');
+                        seatLabel.classList.remove('text-gray-700');
+                        seatLabel.classList.add('text-white');
+
+                        packageCards.classList.add('hidden');
+                        seatCards.classList.remove('hidden');
+                    } else {
+                        slidingBg.style.transform = 'translateX(0)';
+                        packageLabel.classList.remove('text-gray-700');
+                        packageLabel.classList.add('text-white');
+                        seatLabel.classList.remove('text-white');
+                        seatLabel.classList.add('text-gray-700');
+
+                        packageCards.classList.remove('hidden');
+                        seatCards.classList.add('hidden');
+                    }
+                }
+
+                packageRadio.addEventListener('change', updateToggle);
+                seatRadio.addEventListener('change', updateToggle);
+
+                // Set the initial state on page load.
+                updateToggle();
+            });
+        </script>
         <!-- END: SEO Agency Section -->
 
         <!-- Bottom -->
