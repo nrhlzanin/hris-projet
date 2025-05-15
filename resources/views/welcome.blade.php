@@ -31,7 +31,7 @@
         <div class="flex items-center space-x-3">
             <a href="{{ route('sign.in') }}"
                 class="px-4 py-2 bg-gray-100 text-sm font-medium text-gray-700 rounded hover:bg-gray-200">Sign in →</a>
-            <a href="{{ route('get.started') }}"
+            <a href="{{ route('sign.up') }}"
                 class="px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600">Get Started</a>
         </div>
     </nav>

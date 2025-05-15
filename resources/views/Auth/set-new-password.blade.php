@@ -47,7 +47,7 @@
 
                 <a href="{{ route('password.update') }}">
                     <button type="button"
-                        class="w-full bg-red-400 hover:bg-red-500 text-white font-bold py-2 rounded">
+                        class="w-full bg-[#BA3C54] hover:bg-[#C11106] text-white font-bold py-2 rounded">
                         Reset password
                     </button>
                 </a>

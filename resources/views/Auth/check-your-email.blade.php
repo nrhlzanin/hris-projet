@@ -51,7 +51,7 @@
             {{-- Button --}}
             <a href="{{ route('set.new.password') }}">
                 <button type="button"
-                    class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded">
+                    class="w-full bg-[#FFD566] hover:bg-[#FFAB00] text-white font-bold py-2 rounded">
                     Open Gmail
                 </button>
             </a>

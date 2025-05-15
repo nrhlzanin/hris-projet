@@ -46,7 +46,7 @@
             {{-- Button --}}
             <a href="{{ route('sign.in') }}" class="block w-full">
                 <button type="button"
-                    class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded transition-all duration-300 ease-in-out transform hover:scale-105">
+                    class="w-full bg-[#FFD566] hover:bg-[#FFAB00] text-white font-bold py-2 rounded transition-all duration-300 ease-in-out transform hover:scale-105">
                     Back to Login
                 </button>
             </a>

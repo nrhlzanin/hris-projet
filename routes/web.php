@@ -1,18 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmployeeController;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\Auth\LoginController;
 
 //Supabase
 Route::get('/supabase-test', function () {
     return DB::select('SELECT NOW()');
 });
-=======
->>>>>>> c14bf6b5eb3c242e549e291d8312bc2e48775ad1
 
 // Landing Page
 Route::get('/', function () {
@@ -33,18 +32,22 @@ Route::get('/choose-lite', function () {
 })->name('choose.lite');
 
 // Onboarding Pages
-Route::get('/get-started', function () {
-    return view('auth.get-started');
-})->name('get.started');
+Route::get('/sign-up', function () {
+    return view('auth.sign-up');
+})->name('sign.up');
 
 // Authentication
-Route::get('/sign-in', function () {
-    return view('auth.sign-in');
-})->name('sign.in');
+// Form login (email + password)
+Route::get('/sign-in', [LoginController::class, 'showLoginForm'])->name('sign.in');
 
-Route::get('/sign-in-employee', function () {
-    return view('auth.sign-in-employee');
-})->name('sign.in.employee');
+// Form login alternatif (misalnya pakai ID)
+Route::get('/sign-in-id', [LoginController::class, 'showLoginFormId'])->name('sign.in.id');
+
+// Proses login
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+// Logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -66,32 +69,33 @@ Route::get('/password-update', function () {
     return view('auth.password-update');
 })->name('password.update');
 
-// Dashboard
-Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
+// Auth middleware group
+Route::middleware(['auth'])->group(function () {
+    
+    // ADMIN ROUTES
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+        
+        // Employee CRUD
+        Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
+        Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+        Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+        Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+        Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+        Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+        Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
 
-Route::get('/user-dashboard', function () {
-    return view('dasbord.user-dashboard');
-})->name('user.dashboard');
+        // Admin other views (blade files already exist)
+        Route::view('/checklock', 'admin.Employee.checklock')->name('checklock');
+        Route::view('/absensi', 'admin.Employee.absensi')->name('absensi');
+        Route::view('/overtime', 'admin.Employee.over-time')->name('overtime');
+    });
 
-// Employee
-Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
-
-Route::get('/new-employee', function () {
-    return view('employee.new-employee');
-})->name('new.employee');
-
-Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
-Route::post('/employees/import', [EmployeeController::class, 'import'])->name('employees.import');
-
-// Checklock
-Route::get('/user-checklock', [UserController::class, 'checkLock'])->name('user_checklock');
-
-Route::get('/user-absensi', [UserController::class, 'absensi'])->name('user_absensi');
-
-Route::get('/admin-checklock', function () {
-    return view('checklock.admin_checklock');
-})->name('admin.checklock');
-
-Route::get('/admin-absensi', function () {
-    return view('checklock.admin_absensi');
-})->name('admin.absensi');
+    // USER ROUTES
+    Route::middleware('role:user')->prefix('user')->name('user.')->group(function () {
+        Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+        Route::view('/checklock', 'user.checklock')->name('checklock');
+        Route::view('/absensi', 'user.absensi')->name('absensi');
+        Route::view('/overtime', 'user.over-time')->name('overtime');
+    });
+});

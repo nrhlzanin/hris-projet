@@ -14,7 +14,9 @@
 <body class="bg-gray-100 text-sm text-gray-800">
     <div class="flex">
         {{-- Sidebar --}}
-        @include('components.sidebar')
+        @auth
+            @include('components.sidebar')
+        @endauth
 
         <div class="flex-1 min-h-screen flex flex-col">
             {{-- Navbar --}}

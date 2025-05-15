@@ -12,7 +12,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-inter bg-gray-100 m-0 p-0">
+<body class="font-inter bg-white min-h-screen h-screen w-screen m-0 p-0 overflow-hidden">
     <div class="flex flex-col md:flex-row h-screen w-screen overflow-auto bg-white">
         {{-- Left Image Section --}}
         <div class="w-full md:w-1/2 h-64 md:h-full relative">
@@ -37,7 +37,7 @@
                 <p class="mb-6 text-gray-700">Create your account and streamline your employee management.</p>
 
                 {{-- Sign Up Form --}}
-                <form action="{{ route('sign.up.post') }}" method="POST" class="space-y-5">
+                <form action="" method="POST" class="space-y-5">
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -63,16 +63,16 @@
                     </div>
                     <div class="flex items-center text-sm">
                         <input type="checkbox" id="terms" class="mr-2">
-                        <label for="terms">I agree with the <a href="#" class="font-bold underline">terms</a> of use of HRIS</label>
+                        <label for="terms">I agree with the <a href="#" class="hover:underline">terms</a> of use of HRIS</label>
                     </div>
 
                     <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">SIGN UP</button>
                 </form>
 
                 {{-- Google Sign Up --}}
-                <a href="{{ route('google.redirect') }}" class="w-full bg-gray-400 hover:bg-blue-500 text-white font-bold py-2 rounded text-center block mt-4">Sign up with Google</a>
+                <a href=" " class="w-full bg-gray-400 hover:bg-blue-500 text-white font-bold py-2 rounded text-center block mt-4">Sign up with Google</a>
 
-                <p class="text-center text-sm mt-4">Already have an account? <a href="{{ route('sign.in') }}" class="text-blue-600 underline">Sign in here</a></p>
+                <p class="text-center text-sm mt-4">Already have an account? <a href="{{ route('sign.in') }}" class="text-blue-600 hover:underline">Sign in here</a></p>
             </div>
         </div>
     </div>

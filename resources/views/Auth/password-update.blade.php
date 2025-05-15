@@ -43,7 +43,7 @@
 
             {{-- Button --}}
             <a href="{{ route('sign.in') }}">
-                <button type="button" class="w-full bg-green-400 hover:bg-green-500 text-white font-bold py-2 rounded">
+                <button type="button" class="w-full bg-[#5AA877] hover:bg-[#257047] text-white font-bold py-2 rounded">
                     Login Now
                 </button>
             </a>
