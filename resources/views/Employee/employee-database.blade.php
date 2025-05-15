@@ -49,7 +49,11 @@
                         <input type="text" placeholder="Search Employee"
                                class="px-3 py-2 border rounded-md focus:ring focus:border-blue-300 w-full sm:w-auto">
                         <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 w-full sm:w-auto">Filter</button>
-                        <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 w-full sm:w-auto">Import</button>
+                        <button id="import-button" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Import</button>
+                        <form id="import-form" action="{{ route('employees.import') }}" method="POST" enctype="multipart/form-data" class="hidden">
+                            @csrf
+                            <input id="file-input" type="file" name="file" accept=".csv" class="hidden">
+                        </form>
                         <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 w-full sm:w-auto">Export</button>
                         <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                             <a href="{{ route('new.employee') }}">+ Add Data</a>
@@ -74,48 +78,35 @@
                         </tr>
                         </thead>
                         <tbody class="divide-y">
-                        @for ($i = 1; $i <= 10; $i++)
-                            <tr>
-                                <td class="p-2">{{ $i }}</td>
-                                <td class="p-2">
-                                    <div class="w-8 h-8 rounded-full bg-blue-800"></div>
-                                </td>
-                                <td class="p-2">Nama {{ $i }}</td>
-                                <td class="p-2">
-                                    <span
-                                        class="px-2 py-1 rounded-full text-white {{ $i % 2 == 0 ? 'bg-blue-500' : 'bg-rose-500' }}">
-                                        {{ $i % 2 == 0 ? 'Men' : 'Woman' }}
-                                    </span>
-                                </td>
-                                <td class="p-2">0812803310{{ $i }}</td>
-                                <td class="p-2">Jakarta</td>
-                                <td class="p-2">Staff</td>
-                                <td class="p-2">Lead</td>
-                                <td class="p-2">
-                                    <label class="inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" {{ $i % 3 == 0 ? '' : 'checked' }}>
-                                        <div
-                                            class="w-10 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-500 relative after:content-[''] after:absolute after:left-1 after:top-1 after:bg-white after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-5">
-                                        </div>
-                                    </label>
-                                </td>
-                                <td class="p-2 flex space-x-2">
-                                    <button class="p-1 bg-green-500 hover:bg-green-600 text-white rounded">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                             viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-                                                                       stroke-width="2"
-                                                                       d="M15 12H9m4 4H9m1-8H9m13 5a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                    </button>
-                                    <button class="p-1 bg-yellow-400 hover:bg-yellow-500 text-white rounded">
-                                        ✎
-                                    </button>
-                                    <button class="p-1 bg-red-500 hover:bg-red-600 text-white rounded">
-                                        🗑
-                                    </button>
-                                </td>
-                            </tr>
-                        @endfor
+                            @foreach ($employees as $employee)
+                                <tr>
+                                    <td class="p-2">{{ $loop->iteration }}</td>
+                                    <td class="p-2">
+                                        <img src="{{ asset('storage/' . $employee->avatar) }}" alt="Avatar" class="w-8 h-8 rounded-full">
+                                    </td>
+                                    <td class="p-2">{{ $employee->nama }}</td>
+                                    <td class="p-2">
+                                        <span class="px-2 py-1 rounded-full text-white {{ $employee->jenis_kelamin == 'Men' ? 'bg-blue-500' : 'bg-rose-500' }}">
+                                            {{ $employee->jenis_kelamin }}
+                                        </span>
+                                    </td>
+                                    <td class="p-2">{{ $employee->nomor_telepon }}</td>
+                                    <td class="p-2">{{ $employee->cabang }}</td>
+                                    <td class="p-2">{{ $employee->jabatan }}</td>
+                                    <td class="p-2">{{ $employee->grade }}</td>
+                                    <td class="p-2">
+                                        <label class="inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" {{ $employee->status ? 'checked' : '' }}>
+                                            <div class="w-10 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-500 relative after:content-[''] after:absolute after:left-1 after:top-1 after:bg-white after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-5">
+                                            </div>
+                                        </label>
+                                    </td>
+                                    <td class="p-2 flex space-x-2">
+                                        <button class="p-1 bg-green-500 hover:bg-green-600 text-white rounded">✎</button>
+                                        <button class="p-1 bg-red-500 hover:bg-red-600 text-white rounded">🗑</button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -134,6 +125,18 @@
 
     </div>
 </div>
+
+<script>
+    document.getElementById('import-button').addEventListener('click', function () {
+        document.getElementById('file-input').click();
+    });
+
+    document.getElementById('file-input').addEventListener('change', function () {
+        if (this.files.length > 0) {
+            document.getElementById('import-form').submit();
+        }
+    });
+</script>
 
 </body>
 </html>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\AdminController;
 
 //Supabase
 Route::get('/supabase-test', function () {
@@ -71,29 +72,22 @@ Route::get('/password-update', function () {
 })->name('password.update');
 
 // Dashboard
-Route::get('/admin-dashboard', function () {
-    return view('dasbord.admin-dashboard');
-})->name('admin.dashboard');
+Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
 
 // Employee
-Route::get('/employee-database', function () {
-    return view('employee.employee-database');
-})->name('employee.database');
+Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
 
 Route::get('/new-employee', function () {
     return view('employee.new-employee');
 })->name('new.employee');
 
 Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+Route::post('/employees/import', [EmployeeController::class, 'import'])->name('employees.import');
 
 // Checklock
-Route::get('/user-checklock', function () {
-    return view('checklock.user_checklock');
-})->name('user.checklock');
+Route::get('/user-checklock', [UserController::class, 'checkLock'])->name('user_checklock');
 
-Route::get('/user-absensi', function () {
-    return view('checklock.user_absensi');
-})->name('user.absensi');
+Route::get('/user-absensi', [UserController::class, 'absensi'])->name('user_absensi');
 
 Route::get('/admin-checklock', function () {
     return view('checklock.admin_checklock');

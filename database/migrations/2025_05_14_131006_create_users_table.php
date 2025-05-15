@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('is_admin')->default(false);
+            $table->string('nik', 16)->unique()->nullable(); // Tambahkan kolom NIK
             $table->timestamps();
         });
     }
