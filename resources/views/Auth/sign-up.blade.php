@@ -37,7 +37,7 @@
                 <p class="mb-6 text-gray-700">Create your account and streamline your employee management.</p>
 
                 {{-- Sign Up Form --}}
-                <form action="" method="POST" class="space-y-5">
+                <form action="{{ route('sign.up.submit') }}" method="POST" class="space-y-5">
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -70,9 +70,13 @@
                 </form>
 
                 {{-- Google Sign Up --}}
-                <a href=" " class="w-full bg-gray-400 hover:bg-blue-500 text-white font-bold py-2 rounded text-center block mt-4">Sign up with Google</a>
-
-                <p class="text-center text-sm mt-4">Already have an account? <a href="{{ route('sign.in') }}" class="text-blue-600 hover:underline">Sign in here</a></p>
+                <a href="{{ route('google.redirect') }}" class="w-full text-white font-bold py-2 rounded text-center block mt-4">
+                    <button type="button"
+                            class="w-full bg-[#595959] hover:bg-[#2D8EFF] text-white font-bold py-2 rounded flex items-center justify-center gap-2">
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="h-5 w-5">
+                            Sign in with Google
+                    </button>
+                </a>
             </div>
         </div>
     </div>

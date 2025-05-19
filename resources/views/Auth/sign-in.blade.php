@@ -63,12 +63,17 @@
                     <button type="submit"
                         class="w-full bg-[#2D8EFF] hover:bg-[#1E3A5F] text-white font-bold py-2 rounded">SIGN IN</button>
 
-                    <button type="button"
-                        class="w-full bg-[#595959] hover:bg-[#2D8EFF] text-white font-bold py-2 rounded">Sign in with Google</button>
+                    <a href="{{ route('google.redirect') }}">
+                        <button type="button"
+                            class="w-full bg-[#595959] hover:bg-[#2D8EFF] text-white font-bold py-2 rounded flex items-center justify-center gap-2">
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="h-5 w-5">
+                            Sign in with Google
+                        </button>
+                    </a>
 
                     <a href="{{ route('sign.in.id') }}">
                         <div class="w-full bg-[#595959] hover:bg-[#2D8EFF] text-white font-bold py-2 rounded text-center mt-2">
-                            Sign in with Employee
+                            Sign in with Employee ID
                         </div>
                     </a>
 

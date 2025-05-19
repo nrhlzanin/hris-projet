@@ -37,25 +37,26 @@
                 <h1 class="text-3xl font-bold mb-2">Sign in with ID Employee</h1>
                 <p class="mb-6 text-gray-700">Welcome back to HRIS cmlabs! Manage everything with ease.</p>
 
-                <form class="space-y-5">
+                <form method="POST" action="{{ route('login.id') }}" class="space-y-5">
+                    @csrf
                     <div>
                         <label class="block text-sm font-medium mb-1">Company Username</label>
-                        <input type="text" placeholder="Enter your Company Username"
+                        <input type="text" name="username" placeholder="Enter your Company Username"
                             class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1">ID Employee</label>
-                        <input type="text" placeholder="Enter your ID Employee"
+                        <label class="block text-sm font-medium mb-1">ID Employee (NIK)</label>
+                        <input type="text" name="nik" placeholder="Enter your ID Employee"
                             class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-1">Password</label>
-                        <input type="password" placeholder="Enter your password"
+                        <input type="password" name="password" placeholder="Enter your password"
                             class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                     </div>
                     <div class="flex items-center text-sm justify-between">
                         <div class="flex items-center">
-                            <input type="checkbox" id="remember" class="mr-2">
+                            <input type="checkbox" id="remember" name="remember" class="mr-2">
                             <label for="remember" class="cursor-pointer">Remember me</label>
                         </div>
                         <a href="{{ route('forgot.password') }}" class="text-blue-600 font-semibold hover:underline">
@@ -69,7 +70,7 @@
                     <a href="{{ route('sign.in') }}">
                         <button type="button"
                             class="w-full bg-[#595959] hover:bg-[#2D8EFF] text-white font-bold py-2 rounded">
-                            Use a different sign-in method
+                            Use Different Method
                         </button>
                     </a>
 
