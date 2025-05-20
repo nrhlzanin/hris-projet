@@ -24,10 +24,10 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+        if (\Auth::attempt($credentials, $request->filled('remember'))) {
+            $user = \Auth::user();
 
-            // Arahkan berdasarkan is_admin
+            // Cek is_admin
             if ($user->is_admin) {
                 return redirect()->route('admin.dashboard');
             } else {

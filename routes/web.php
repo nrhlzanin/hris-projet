@@ -46,6 +46,7 @@ Route::get('/sign-in-id', [LoginController::class, 'showLoginFormId'])->name('si
 // Proses login
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login-id', [LoginController::class, 'loginWithId'])->name('login.id');
+Route::post('/sign-in', [LoginController::class, 'login'])->name('sign.in.submit');
 
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
