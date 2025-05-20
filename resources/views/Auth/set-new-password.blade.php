@@ -1,4 +1,4 @@
-{{-- resources/views/get-started.blade.php --}}
+{{-- resources/views/set-new-password.blade.php --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -13,25 +13,25 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-inter bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="bg-white rounded-md shadow-lg w-full max-w-5xl overflow-hidden flex flex-col-reverse md:flex-row-reverse">
+<body class="font-inter bg-gray-100 h-screen w-screen m-0 p-0 overflow-hidden">
+    <div class="flex flex-col md:flex-row-reverse h-full w-full">
         
-        {{-- Right Image Section --}}
-        <div class="w-full md:w-1/2 h-64 md:h-auto relative">
-            <img src="/Img/hris-illustration.svg" alt="HRIS Illustration" class="w-full h-full object-cover">
+        {{-- Right Image Section (static) --}}
+        <div class="w-full md:w-1/2 h-64 md:h-full relative">
+            <img src="{{ asset('img/Forgot Passs.png') }}" alt="HRIS Illustration" class="w-full h-full object-cover">
         </div>
 
-        {{-- Left Form Section --}}
-        <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
+        {{-- Left Form Section (scrollable) --}}
+        <div class="w-full md:w-1/2 h-full overflow-y-auto p-10 flex flex-col justify-center bg-white">
             
-            {{-- Title and Description --}}
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-bold mb-2">Set new password</h1>
-                <p class="text-gray-700">Enter your new password below to complete the reset process.
-                    Ensure it’s strong and secure.</p>
+                <p class="text-gray-700">
+                    Enter your new password below to complete the reset process.
+                    Ensure it’s strong and secure.
+                </p>
             </div>
 
-            {{-- Form --}}
             <form class="flex flex-col gap-6">
                 <div>
                     <label class="block text-sm font-medium mb-1">Password</label>
@@ -45,18 +45,18 @@
                         class="w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 </div>
 
-                <a href="{{ route('check.your.email') }}">
-                    <button type="button" class="w-full bg-red-400 hover:bg-red-500 text-white font-bold py-2 rounded">
+                <a href="{{ route('password.update') }}">
+                    <button type="button"
+                        class="w-full bg-[#BA3C54] hover:bg-[#C11106] text-white font-bold py-2 rounded">
                         Reset password
                     </button>
                 </a>
 
-                {{-- Back to login --}}
                 <p class="text-center text-sm">
                     <a href="{{ route('sign.in') }}" class="text-blue-600 hover:underline">← Back to log in</a>
                 </p>
             </form>
-        </div>        
+        </div>
     </div>
 </body>
 

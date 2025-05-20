@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
+<<<<<<< HEAD:resources/views/Checklock/user_absensi.blade.php
 <body class="bg-gray-100 min-h-screen">
   <div class="flex h-screen">
     <!-- Sidebar -->
@@ -65,6 +66,18 @@
 
             <!-- Navbar -->
             @include('components.navbar')
+=======
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+    <!-- Sidebar -->
+    @include('components.sidebar')
+
+    <!-- Main content -->
+    <div class="flex-1 flex flex-col ml-20">
+        
+        <!-- Navbar -->
+        @include('components.navbar')
+>>>>>>> 21fa30ee87c04b917e8bf2ea9af04d638a67a70f:resources/views/user/absensi.blade.php
 
     <!-- Add Checkbox Form Card -->
     <div class="bg-white p-6 rounded-lg shadow-md w-full mt-24">

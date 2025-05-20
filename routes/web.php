@@ -1,7 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\Auth\LoginController;
+
+//Supabase
+Route::get('/supabase-test', function () {
+    return DB::select('SELECT NOW()');
+});
 
 // Landing Page
 Route::get('/', function () {
@@ -22,18 +32,23 @@ Route::get('/choose-lite', function () {
 })->name('choose.lite');
 
 // Onboarding Pages
-Route::get('/get-started', function () {
-    return view('auth.get-started');
-})->name('get.started');
+Route::get('/sign-up', function () {
+    return view('auth.sign-up');
+})->name('sign.up');
 
 // Authentication
-Route::get('/sign-in', function () {
-    return view('auth.sign-in');
-})->name('sign.in');
+// Form login (email + password)
+Route::get('/sign-in', [LoginController::class, 'showLoginForm'])->name('sign.in');
 
-Route::get('/sign-in-employee', function () {
-    return view('auth.sign-in-employee');
-})->name('sign.in.employee');
+// Form login alternatif (misalnya pakai ID)
+Route::get('/sign-in-id', [LoginController::class, 'showLoginFormId'])->name('sign.in.id');
+
+// Proses login
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login-id', [LoginController::class, 'loginWithId'])->name('login.id');
+
+// Logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -47,39 +62,48 @@ Route::get('/set-new-password', function () {
     return view('auth.set-new-password');
 })->name('set.new.password');
 
-Route::get('/auth/link-expired', function () {
+Route::get('/link-expired', function () {
     return view('auth.link-expired');
 })->name('link.expired');
 
-// Dashboard
-Route::get('/admin-dashboard', function () {
-    return view('dasbord.admin-dashboard');
-})->name('admin-dashboard');
+Route::get('/password-update', function () {
+    return view('auth.password-update');
+})->name('password.update');
 
-// Employee
-Route::get('/employee-database', function () {
-    return view('employee.employee-database');
-})->name('employee.database');
+// Auth middleware group
+Route::middleware(['auth'])->group(function () {
+    
+    // ADMIN ROUTES
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+        
+        // Employee CRUD
+        Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
+        Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+        Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+        Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+        Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+        Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+        Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
 
-Route::get('/new-employee', function () {
-    return view('employee.new-employee');
-})->name('new.employee');
+        // Admin other views (blade files already exist)
+        Route::view('/checklock', 'admin.Employee.checklock')->name('checklock');
+        Route::view('/absensi', 'admin.Employee.absensi')->name('absensi');
+        Route::view('/overtime', 'admin.Employee.over-time')->name('overtime');
+    });
 
-Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+    // USER ROUTES
+    Route::middleware('role:user')->prefix('user')->name('user.')->group(function () {
+        Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+        Route::view('/checklock', 'user.checklock')->name('checklock');
+        Route::view('/absensi', 'user.absensi')->name('absensi');
+        Route::view('/overtime', 'user.over-time')->name('overtime');
+    });
+});
 
-// Checklock
-Route::get('/user-checklock', function () {
-    return view('checklock.user_checklock');
-})->name('user_checklock');
+// Google Authentication Routes
+Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
-Route::get('/user-absensi', function () {
-    return view('checklock.user_absensi');
-})->name('user_absensi');
-
-Route::get('/admin-checklock', function () {
-    return view('checklock.admin_checklock');
-})->name('admin_checklock');
-
-Route::get('/admin-absensi', function () {
-    return view('checklock.admin_absensi');
-})->name('admin_absensi');
+// Register User
+Route::post('/sign-up', [RegisterController::class, 'register'])->name('sign.up.submit');

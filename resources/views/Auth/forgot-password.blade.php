@@ -1,4 +1,4 @@
-{{-- resources/views/get-started.blade.php --}}
+{{-- resources/views/forgot-password.blade.php --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -13,32 +13,32 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-inter bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="bg-white rounded-md shadow-lg w-full max-w-5xl overflow-hidden flex flex-col-reverse md:flex-row-reverse">
-        {{-- Right Image Section --}}
-        <div class="w-full md:w-1/2 h-64 md:h-auto relative">
-            <img src="/Img/hris-illustration.svg" alt="HRIS Illustration" class="w-full h-full object-cover">
+<body class="font-inter bg-gray-100 h-screen w-screen m-0 p-0 overflow-hidden">
+    <div class="flex flex-col md:flex-row-reverse h-full w-full">
+        {{-- Right Image Section (tetap fix tinggi layar) --}}
+        <div class="w-full md:w-1/2 h-64 md:h-full relative">
+            <img src="{{ asset('img/Forgot Passs.png') }}" alt="HRIS Illustration" class="w-full h-full object-cover">
         </div>
 
-        {{-- Left Form Section --}}
-        <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
-            {{-- Title and Description Centered --}}
+        {{-- Left Form Section (scrollable jika content panjang) --}}
+        <div class="w-full md:w-1/2 h-full overflow-y-auto p-10 flex flex-col justify-center bg-white">
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-bold mb-2">Forgot Password</h1>
                 <p class="text-gray-700">No worries. Enter your email address below, and we’ll send you a link to reset your password.</p>
             </div>
-        
-            {{-- Form --}}
+
+            {{-- Reset password button --}}
             <a href="{{ route('check.your.email') }}">
-                <button type="button" class="w-full bg-red-400 hover:bg-red-500 text-white font-bold py-2 rounded">
+                <button type="button" class="w-full bg-[#BA3C54] hover:bg-[#C11106] text-white font-bold py-2 rounded">
                     Reset password
                 </button>
             </a>
+
             {{-- Back to login --}}
             <p class="text-center text-sm mt-4">
                 <a href="{{ route('sign.in') }}" class="text-blue-600 hover:underline">← Back to log in</a>
             </p>
-        </div>        
+        </div>
     </div>
 </body>
 

@@ -10,16 +10,14 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen">
-  <div class="flex h-screen">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+            @include('components.sidebar')
+        <!-- Main content -->
+    <div class="flex-1 flex flex-col ml-20">
 
-    {{-- Sidebar --}}
-    @include('components.sidebar')
-
-    <!-- Main content -->
-    <div class="flex-1 flex flex-col">
-
-      {{-- Navbar --}}
-      @include('components.navbar')
+            <!-- Navbar -->
+            @include('components.navbar')
 
       <!-- Form -->
       <div class="p-6 mt-20">
