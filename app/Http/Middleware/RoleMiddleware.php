@@ -9,10 +9,21 @@ class RoleMiddleware
 {
     public function handle(Request $request, Closure $next, $role)
     {
-        if (Auth::check() && Auth::user()->role === $role) {
-            return $next($request);
+        $user = auth()->user();
+
+        if (!$user) {
+            abort(403, 'Unauthorized');
         }
 
-        abort(403); // Akses ditolak
+        // Gunakan is_admin untuk cek role
+        if ($role === 'admin' && !$user->is_admin) {
+            abort(403, 'Unauthorized');
+        }
+
+        if ($role === 'user' && $user->is_admin) {
+            abort(403, 'Unauthorized');
+        }
+
+        return $next($request);
     }
 }

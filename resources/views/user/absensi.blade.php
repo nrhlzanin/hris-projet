@@ -73,14 +73,10 @@
                         <div class="space-y-4 w-full lg:w-1/2">
                             <div>
                                 <label class="block text-sm font-medium">Location</label>
-                                <select class="w-full border rounded px-3 py-2">
-                                    <option>Choose Location</option>
-                                </select>
                             </div>
 
                             <div>
-                                <img src="https://via.placeholder.com/400x200?text=Map" alt="Map"
-                                    class="w-full h-48 object-cover rounded border">
+                                <div id="map" class="w-full h-48 rounded border"></div>
                             </div>
 
                             <div>
@@ -138,6 +134,7 @@
             });
         });
     </script>
+    <script src="{{ asset('js/maps.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
-
 </html>
