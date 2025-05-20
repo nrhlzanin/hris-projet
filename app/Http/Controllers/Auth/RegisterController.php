@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class RegisterController extends Controller
@@ -21,6 +21,8 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $request->validate([
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:50',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
         ]);
@@ -28,7 +30,7 @@ class RegisterController extends Controller
         User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'is_admin' => false, // Pastikan kolom is_admin diisi
+            'is_admin' => false,
         ]);
 
         return redirect()->route('sign.in')->with('success', 'Account created successfully!');
@@ -54,7 +56,7 @@ class RegisterController extends Controller
                 'first_name' => $googleUser->user['given_name'] ?? '',
                 'last_name' => $googleUser->user['family_name'] ?? '',
                 'email' => $googleUser->getEmail(),
-                'password' => Hash::make(uniqid()), // Password random
+                'password' => Hash::make(uniqid()),
                 'is_admin' => false,
             ]);
         }

@@ -45,6 +45,7 @@ Route::get('/sign-in-id', [LoginController::class, 'showLoginFormId'])->name('si
 
 // Proses login
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login-id', [LoginController::class, 'loginWithId'])->name('login.id');
 
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -99,3 +100,10 @@ Route::middleware(['auth'])->group(function () {
         Route::view('/overtime', 'user.over-time')->name('overtime');
     });
 });
+
+// Google Authentication Routes
+Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
+// Register User
+Route::post('/sign-up', [RegisterController::class, 'register'])->name('sign.up.submit');
