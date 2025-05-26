@@ -5,23 +5,25 @@ phases:
     runtime-versions:
       php: 8.2
     commands:
-      - echo "Installing PHP dependencies..."
+      - echo "Installing dependencies..."
+      - apt-get update && apt-get install -y openssh-client
       - composer install --no-interaction --prefer-dist --optimize-autoloader
   pre_build:
     commands:
       - echo "Running pre-build tasks..."
       - php artisan config:clear
+      - echo "Fetching private key from Secrets Manager..."
+      - aws secretsmanager get-secret-value --secret-id /ec2/deploy_key --query SecretString --output text > key.pem
+      - chmod 400 key.pem
   build:
     commands:
       - echo "Build phase - nothing to build for Laravel"
   post_build:
     commands:
       - echo "Deploying to EC2..."
-      - echo "$PRIVATE_KEY" > key.pem
-      - chmod 400 key.pem
-      - scp -i key.pem -o StrictHostKeyChecking=no -r * ec2-user@${EC2_HOST}:/var/www/html
+      - scp -i key.pem -o StrictHostKeyChecking=no -r * ec2-user@172.31.82.121:/var/www/html 
 
 artifacts:
   files:
     - '**/*'
-  discard-paths: no
+  discard-paths: no  
