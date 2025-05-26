@@ -24,7 +24,7 @@ phases:
   post_build:
     commands:
       - echo "Deploying to EC2..."
-      - scp -i key.pem -o StrictHostKeyChecking=no -r * ec2-user@172.31.82.121:/var/www/html
+      - scp -i key.pem -o StrictHostKeyChecking=no -r * ec2-user@3.82.223.20:/var/www/html
 
 artifacts:
   files:
