@@ -50,7 +50,6 @@
                                     disabled>Upload Now</button>
                             </div>
                         </div>
-
                         <!-- Right Section (Row 2) -->
                         <div class="space-y-4 w-full lg:w-1/2">
                             <div>
@@ -119,36 +118,32 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Inisialisasi peta
-            var defaultLat = -7.983908;
-            var defaultLng = 112.621391;
-            window.map = L.map('map').setView([defaultLat, defaultLng], 13);
+            var defaultLat = 0;
+            var defaultLng = 0;
+            window.map = L.map('map', {
+                dragging: false,
+                touchZoom: true,
+                scrollWheelZoom: true,
+                doubleClickZoom: true,
+                boxZoom: true,
+                keyboard: false,
+                zoomControl: true,
+                zoomAnimation: true,
+                attributionControl: true
+            }).setView([defaultLat, defaultLng], 13);
 
-            // Tambahkan tile layer OpenStreetMap
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
 
-            // Tambahkan marker yang bisa dipindah
-            window.marker = L.marker([defaultLat, defaultLng], {draggable:true}).addTo(window.map);
+            // Marker tidak draggable
+            window.marker = L.marker([defaultLat, defaultLng]).addTo(window.map);
 
             // Set nilai awal input
             document.querySelector('input[placeholder="Lat lokasi"]').value = defaultLat;
             document.querySelector('input[placeholder="Long lokasi"]').value = defaultLng;
 
-            // Update input saat marker dipindah
-            marker.on('dragend', function(e) {
-                var latlng = marker.getLatLng();
-                document.querySelector('input[placeholder="Lat lokasi"]').value = latlng.lat;
-                document.querySelector('input[placeholder="Long lokasi"]').value = latlng.lng;
-            });
-
-            // Update marker & input saat peta diklik
-            map.on('click', function(e) {
-                marker.setLatLng(e.latlng);
-                document.querySelector('input[placeholder="Lat lokasi"]').value = e.latlng.lat;
-                document.querySelector('input[placeholder="Long lokasi"]').value = e.latlng.lng;
-            });
+            // Tidak perlu event dragend atau map click
         });
     </script>
     <script>

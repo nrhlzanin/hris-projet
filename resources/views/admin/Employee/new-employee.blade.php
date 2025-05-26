@@ -149,14 +149,14 @@
                         <label for="bank" class="block text-sm font-medium text-gray-600">Bank</label>
                         <select id="bank" name="bank" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm">
                             <option value="">-Choose Bank-</option>
-                            <option value="bank_a">BCA</option>
-                            <option value="bank_a">BNI</option>
-                            <option value="bank_b">BRI</option>
-                            <option value="bank_b">BSI</option>
-                            <option value="bank_b">BTN</option>
-                            <option value="bank_b">CMIB</option>
-                            <option value="bank_b">Mandiri</option>
-                            <option value="bank_b">Permata</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BNI">BNI</option>
+                            <option value="BRI">BRI</option>
+                            <option value="BSI">BSI</option>
+                            <option value="BTN">BTN</option>
+                            <option value="CMIB">CMIB</option>
+                            <option value="Mandiri">Mandiri</option>
+                            <option value="Permata">Permata</option>
                         </select>
                     </div>
                     <div>
@@ -166,15 +166,6 @@
                     <div>
                         <label for="account_holder_name" class="block text-sm font-medium text-gray-600">Account Holder's Name</label>
                         <input type="text" id="account_holder_name" name="account_holder_name" placeholder="Bank Number Account Holder Name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm">
-                    </div>
-                    <div>
-                        <label for="warning_letter_type" class="block text-sm font-medium text-gray-600">Warning Letter Type</label>
-                        <select id="warning_letter_type" name="warning_letter_type" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm">
-                            <option value="">-Choose Type-</option>
-                            <option value="type_a">Sp 1</option>
-                            <option value="type_b">Sp 2</option>
-                            <option value="type_b">Sp 3</option>
-                        </select>
                     </div>
                     <div class="col-span-2 flex justify-end space-x-4">
                         <a href="{{ route('admin.Employee.employee-database') }}" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Cancel</a>

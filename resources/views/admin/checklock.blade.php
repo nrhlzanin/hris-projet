@@ -25,10 +25,14 @@
           <div class="flex justify-between mb-4">
             <h2 class="text-2xl font-semibold">Checklock Overview</h2>
             <div class="flex gap-2">
-              <button class="border px-4 py-2 rounded">Filter</button>
-              <a href="/admin-absensi">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-200">
-                  + Add Data
+              <a href="{{ route('admin.checklock') }}">
+                <button class="px-4 border py-2 text-700 rounded hover:bg-gray-400 w-full sm:w-auto">
+                  <i class="ri-refresh-line mr-2"></i>Reset Sort
+                </button>
+              </a>
+              <a href="#">
+                <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition duration-200">
+                  Export
                 </button>
               </a>
             </div>
@@ -37,8 +41,34 @@
           <table class="min-w-full text-sm text-left">
             <thead>
               <tr class="bg-gray-100">
-                <th class="px-4 py-2">Employee Name</th>
-                <th class="px-4 py-2">Jabatan</th>
+                <th class="px-4 py-2">
+                  <a href="{{ route('admin.checklock', ['sort' => 'employee_name', 'direction' => request('sort') == 'employee_name' && request('direction') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1">
+                    Employee Name
+                    @if(request('sort') == 'employee_name')
+                      @if(request('direction') == 'asc')
+                        <i class="ri-arrow-up-s-line text-blue-500"></i>
+                      @else
+                        <i class="ri-arrow-down-s-line text-blue-500"></i>
+                      @endif
+                    @else
+                      <i class="ri-arrow-up-down-line text-gray-400"></i>
+                    @endif
+                  </a>
+                </th>
+                <th class="px-4 py-2">
+                  <a href="{{ route('admin.checklock', ['sort' => 'Position', 'direction' => request('sort') == 'Position' && request('direction') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1">
+                    Position
+                    @if(request('sort') == 'Position')
+                      @if(request('direction') == 'asc')
+                        <i class="ri-arrow-up-s-line text-blue-500"></i>
+                      @else
+                        <i class="ri-arrow-down-s-line text-blue-500"></i>
+                      @endif
+                    @else
+                      <i class="ri-arrow-up-down-line text-gray-400"></i>
+                    @endif
+                  </a>
+                </th>
                 <th class="px-4 py-2">Clock In</th>
                 <th class="px-4 py-2">Clock Out</th>
                 <th class="px-4 py-2">Work Hours</th>
@@ -54,16 +84,16 @@
                 <td class="px-4 py-2">08.00</td>
                 <td class="px-4 py-2">18.30</td>
                 <td class="px-4 py-2">10h 30m</td>
-<td class="px-4 py-2">
-  <button class="flex items-center gap-2 text-blue-600 hover:underline" onclick="openModal()">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        d="M13.828 10.172a4 4 0 010 5.656m1.414-1.414a6 6 0 00-8.485-8.485m1.414 1.414a4 4 0 015.657 5.657" />
-    </svg>
-    <span>Buka</span>
-  </button>
-</td>
-
+                <td class="px-4 py-2">
+                  <div id="approve-icons">
+                    <button class="text-green-600 hover:text-green-800 mr-2" onclick="approveActionRow(this)">
+                      <i class="ri-check-line text-2xl"></i>
+                    </button>
+                    <button class="text-red-600 hover:text-red-800" onclick="rejectActionRow(this)">
+                      <i class="ri-close-line text-2xl"></i>
+                    </button>
+                  </div>
+                </td>
                 <td class="px-4 py-2">
                   <span id="status-text" class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded text-xs">Waiting Approval</span>
                 </td>
@@ -100,7 +130,7 @@
   </div>
 
   <!-- Attendance Details Modal -->
-<div id="attendanceDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-right z-50 hidden">
+<div id="attendanceDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
   <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl">
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-bold">Attendance Details</h2>
@@ -113,7 +143,7 @@
         <div class="w-12 h-12 bg-blue-800 rounded-full"></div>
         <div>
           <div class="font-semibold">Nama Lengkap</div>
-          <div class="text-sm text-gray-600">Jabatan</div>
+          <div class="text-sm text-gray-600">Position</div>
         </div>
       </div>
       <span class="bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded">Status Approve</span>
@@ -175,30 +205,48 @@
     }
 
     function approveAction() {
-      document.getElementById('icon-check').classList.remove('hidden');
-      document.getElementById('icon-cross').classList.add('hidden');
-      const status = document.getElementById('status-text');
-      status.textContent = "On Time";
-      status.className = "bg-green-200 text-green-800 px-2 py-1 rounded text-xs";
+      // Implement approve action
       closeModal();
     }
 
     function rejectAction() {
-      document.getElementById('icon-cross').classList.remove('hidden');
-      document.getElementById('icon-check').classList.add('hidden');
-      const status = document.getElementById('status-text');
-      status.textContent = "Late";
-      status.className = "bg-red-200 text-red-800 px-2 py-1 rounded text-xs";
+      // Implement reject action
       closeModal();
     }
 
     function openDetailsModal() {
-    document.getElementById('attendanceDetailsModal').classList.remove('hidden');
-  }
+      document.getElementById('attendanceDetailsModal').classList.remove('hidden');
+    }
 
-  function closeDetailsModal() {
-    document.getElementById('attendanceDetailsModal').classList.add('hidden');
-  }
+    function closeDetailsModal() {
+      document.getElementById('attendanceDetailsModal').classList.add('hidden');
+    }
+
+    function approveActionRow(btn) {
+      // Update status text
+      const row = btn.closest('tr');
+      row.querySelector('#status-text').textContent = 'Approved';
+      row.querySelector('#status-text').className = 'bg-green-200 text-green-800 px-2 py-1 rounded text-xs';
+
+      // Replace icons with only check icon
+      const approveIcons = row.querySelector('#approve-icons');
+      approveIcons.innerHTML = `
+        <i class="ri-check-line text-2xl text-green-600"></i>
+      `;
+    }
+
+    function rejectActionRow(btn) {
+      // Update status text
+      const row = btn.closest('tr');
+      row.querySelector('#status-text').textContent = 'Rejected';
+      row.querySelector('#status-text').className = 'bg-red-200 text-red-800 px-2 py-1 rounded text-xs';
+
+      // Replace icons with only close icon
+      const approveIcons = row.querySelector('#approve-icons');
+      approveIcons.innerHTML = `
+        <i class="ri-close-line text-2xl text-red-600"></i>
+      `;
+    }
   </script>
 </body>
 </html>

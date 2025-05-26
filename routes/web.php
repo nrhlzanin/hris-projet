@@ -72,36 +72,33 @@ Route::get('/password-update', function () {
     return view('auth.password-update');
 })->name('password.update');
 
-// // Auth middleware group
-// Route::middleware(['auth'])->group(function () {
-    
-//     // ADMIN ROUTES
-//     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
-//         Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-        
-//         // Employee CRUD
-//         Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
-//         Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
-//         Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
-//         Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
-//         Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
-//         Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
-//         Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
+// ADMIN ROUTES
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    Route::view('/absensi', 'admin.absensi')->name('absensi');
+    Route::view('/checklock', 'admin.checklock')->name('checklock');
+    Route::view('/overtime', 'admin.over-time')->name('overtime');
 
-//         // Admin other views (blade files already exist)
-//         Route::view('/checklock', 'admin.Employee.checklock')->name('checklock');
-//         Route::view('/absensi', 'admin.Employee.absensi')->name('absensi');
-//         Route::view('/overtime', 'admin.Employee.over-time')->name('overtime');
-//     });
+    // Employee CRUD
+    Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
+    Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+    Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+    Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+    Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
+    Route::get('/employee/export', [EmployeeController::class, 'export'])->name('employee.export');
+});
 
-//     // USER ROUTES
-//     Route::middleware('role:user')->prefix('user')->name('user.')->group(function () {
-//         Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
-//         Route::view('/checklock', 'user.checklock')->name('checklock');
-//         Route::view('/absensi', 'user.absensi')->name('absensi');
-//         Route::view('/overtime', 'user.over-time')->name('overtime');
-//     });
-// });
+// USER ROUTES
+Route::prefix('user')->name('user.')->group(function () {
+    Route::view('/dashboard', 'user.dashboard')->name('dashboard');
+    Route::view('/absensi', 'user.absensi')->name('absensi');
+    Route::view('/checklock', 'user.checklock')->name('checklock');
+    Route::view('/overtime', 'user.over-time')->name('overtime');
+    Route::post('/absensi', [AbsensiController::class, 'store'])->name('absensi.store');
+    Route::get('/checklock', [\App\Http\Controllers\User\ChecklockController::class, 'index'])->name('user.checklock');
+});
 
 // Google Authentication Routes
 Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle'])->name('google.redirect');
@@ -109,7 +106,6 @@ Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallba
 
 // Register User
 Route::post('/sign-up', [RegisterController::class, 'register'])->name('sign.up.submit');
-
 Route::view('/user/absensi', 'user.absensi')->name('user.absensi');
 Route::get('/admin/Employee/employee-database', [EmployeeController::class, 'index'])->name('admin.Employee.employee-database');
 
@@ -132,3 +128,9 @@ Route::view('/user/absensi', 'user.absensi')->name('user.absensi');
 
 // Proses simpan absensi user (POST)
 Route::post('/user/absensi', [AbsensiController::class, 'store'])->name('user.absensi.store');
+
+// Dashboard Admin
+Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
+
+// Dashboard User
+Route::view('/user/dashboard', 'user.dashboard')->name('user.dashboard');

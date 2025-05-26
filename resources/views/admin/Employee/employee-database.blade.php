@@ -59,8 +59,8 @@
                         <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-full sm:w-auto">
                             <a href="{{ route('new.employee') }}">+ Add Data</a>
                         </button>
-                        <a href="{{ route('admin.Employee.employee-database') }}" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 w-full sm:w-auto">
-                            Reset Sort
+                        <a href="{{ route('admin.Employee.employee-database') }}" class="px-4 border py-2 text-700 rounded hover:bg-gray-400 w-full sm:w-auto">
+                            <i class="ri-refresh-line mr-2"></i>Reset Sort
                         </a>
                     </div>
                 </div>
