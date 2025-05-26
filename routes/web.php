@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AbsensiController;
 
 //Supabase
 Route::get('/supabase-test', function () {
@@ -71,36 +72,36 @@ Route::get('/password-update', function () {
     return view('auth.password-update');
 })->name('password.update');
 
-// Auth middleware group
-Route::middleware(['auth'])->group(function () {
+// // Auth middleware group
+// Route::middleware(['auth'])->group(function () {
     
-    // ADMIN ROUTES
-    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+//     // ADMIN ROUTES
+//     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+//         Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
         
-        // Employee CRUD
-        Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
-        Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
-        Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
-        Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
-        Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
-        Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
-        Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
+//         // Employee CRUD
+//         Route::get('/employee-database', [EmployeeController::class, 'index'])->name('employee.database');
+//         Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+//         Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+//         Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+//         Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+//         Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+//         Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
 
-        // Admin other views (blade files already exist)
-        Route::view('/checklock', 'admin.Employee.checklock')->name('checklock');
-        Route::view('/absensi', 'admin.Employee.absensi')->name('absensi');
-        Route::view('/overtime', 'admin.Employee.over-time')->name('overtime');
-    });
+//         // Admin other views (blade files already exist)
+//         Route::view('/checklock', 'admin.Employee.checklock')->name('checklock');
+//         Route::view('/absensi', 'admin.Employee.absensi')->name('absensi');
+//         Route::view('/overtime', 'admin.Employee.over-time')->name('overtime');
+//     });
 
-    // USER ROUTES
-    Route::middleware('role:user')->prefix('user')->name('user.')->group(function () {
-        Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
-        Route::view('/checklock', 'user.checklock')->name('checklock');
-        Route::view('/absensi', 'user.absensi')->name('absensi');
-        Route::view('/overtime', 'user.over-time')->name('overtime');
-    });
-});
+//     // USER ROUTES
+//     Route::middleware('role:user')->prefix('user')->name('user.')->group(function () {
+//         Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+//         Route::view('/checklock', 'user.checklock')->name('checklock');
+//         Route::view('/absensi', 'user.absensi')->name('absensi');
+//         Route::view('/overtime', 'user.over-time')->name('overtime');
+//     });
+// });
 
 // Google Authentication Routes
 Route::get('/auth/google/redirect', [LoginController::class, 'redirectToGoogle'])->name('google.redirect');
@@ -108,3 +109,26 @@ Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallba
 
 // Register User
 Route::post('/sign-up', [RegisterController::class, 'register'])->name('sign.up.submit');
+
+Route::view('/user/absensi', 'user.absensi')->name('user.absensi');
+Route::get('/admin/Employee/employee-database', [EmployeeController::class, 'index'])->name('admin.Employee.employee-database');
+
+// Tambahkan route yang hilang untuk employee database
+Route::post('/employees/import', [EmployeeController::class, 'import'])->name('employees.import');
+Route::get('/new-employee', function () {
+    return view('admin.Employee.new-employee');
+})->name('new.employee');
+Route::get('/admin/Employee/export', [EmployeeController::class, 'export'])->name('employees.export');
+
+// Form tambah employee (GET)
+Route::get('/new-employee', [EmployeeController::class, 'create'])->name('new.employee');
+
+// Proses simpan employee (POST)
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+Route::view('/admin/absensi', 'admin.absensi')->name('admin.absensi');
+
+// Form absensi user (GET)
+Route::view('/user/absensi', 'user.absensi')->name('user.absensi');
+
+// Proses simpan absensi user (POST)
+Route::post('/user/absensi', [AbsensiController::class, 'store'])->name('user.absensi.store');

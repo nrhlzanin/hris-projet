@@ -177,7 +177,7 @@
                         </select>
                     </div>
                     <div class="col-span-2 flex justify-end space-x-4">
-                        <a href="{{ route('employee.database') }}" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Cancel</a>
+                        <a href="{{ route('admin.Employee.employee-database') }}" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Cancel</a>
                         <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Save</button>
                     </div>
                 </form>

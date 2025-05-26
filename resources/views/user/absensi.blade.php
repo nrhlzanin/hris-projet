@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body class="bg-gray-100">
@@ -31,30 +32,11 @@
                         <!-- Left Section (Row 1) -->
                         <div class="space-y-4 w-full lg:w-1/2">
                             <div>
-                                <label class="block text-sm font-medium">Select Employees</label>
-                                <select class="w-full border rounded px-3 py-2">
-                                    <option>Choose Employee</option>
-                                </select>
-                            </div>
-
-                            <div>
                                 <label class="block text-sm font-medium">Absent Type</label>
                                 <select class="w-full border rounded px-3 py-2">
                                     <option>Choose Absent Type</option>
                                 </select>
                             </div>
-
-                            <div class="flex gap-4">
-                                <div class="flex-1">
-                                    <label class="block text-sm font-medium">Start Date</label>
-                                    <input type="date" class="w-full border rounded px-3 py-2">
-                                </div>
-                                <div class="flex-1">
-                                    <label class="block text-sm font-medium">End Date</label>
-                                    <input type="date" class="w-full border rounded px-3 py-2">
-                                </div>
-                            </div>
-
                             <div>
                                 <label class="block text-sm font-medium">Upload Supporting Evidence</label>
                                 <div class="border-dashed border-2 rounded-lg p-6 text-center">
@@ -134,7 +116,66 @@
             });
         });
     </script>
-    <script src="{{ asset('js/maps.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Inisialisasi peta
+            var defaultLat = -7.983908;
+            var defaultLng = 112.621391;
+            window.map = L.map('map').setView([defaultLat, defaultLng], 13);
+
+            // Tambahkan tile layer OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Tambahkan marker yang bisa dipindah
+            window.marker = L.marker([defaultLat, defaultLng], {draggable:true}).addTo(window.map);
+
+            // Set nilai awal input
+            document.querySelector('input[placeholder="Lat lokasi"]').value = defaultLat;
+            document.querySelector('input[placeholder="Long lokasi"]').value = defaultLng;
+
+            // Update input saat marker dipindah
+            marker.on('dragend', function(e) {
+                var latlng = marker.getLatLng();
+                document.querySelector('input[placeholder="Lat lokasi"]').value = latlng.lat;
+                document.querySelector('input[placeholder="Long lokasi"]').value = latlng.lng;
+            });
+
+            // Update marker & input saat peta diklik
+            map.on('click', function(e) {
+                marker.setLatLng(e.latlng);
+                document.querySelector('input[placeholder="Lat lokasi"]').value = e.latlng.lat;
+                document.querySelector('input[placeholder="Long lokasi"]').value = e.latlng.lng;
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Cek apakah browser mendukung Geolocation
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    // Ambil koordinat
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+
+                    // Set nilai input
+                    document.querySelector('input[placeholder="Lat lokasi"]').value = lat;
+                    document.querySelector('input[placeholder="Long lokasi"]').value = lng;
+
+                    // Update posisi marker dan peta
+                    if (window.marker && window.map) {
+                        window.marker.setLatLng([lat, lng]);
+                        window.map.setView([lat, lng], 15);
+                    }
+                }, function(error) {
+                    alert("Izin lokasi ditolak atau terjadi error.");
+                });
+            } else {
+                alert("Browser tidak mendukung fitur lokasi.");
+            }
+        });
+    </script>
 </body>
 </html>
