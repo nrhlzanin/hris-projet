@@ -110,10 +110,10 @@
                             <li>Fixed work schedule management</li>
                             <li>Automatic fixed calculation</li>
                         </ul>
-                        <button
-                            class="mt-6 w-full bg-[#2D8DFE] text-white font-bold py-3 rounded-lg hover:bg-[#2278D2] transition">
+                        <a href="{{ route('current.plan') }}"
+                            class="mt-6 w-full bg-[#2D8DFE] text-white font-bold py-3 rounded-lg hover:bg-[#2278D2] transition block text-center">
                             Current Plan
-                        </button>
+                    </a>
                     </div>
 
                     <!-- Lite Plan (Recommended) -->

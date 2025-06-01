@@ -31,6 +31,10 @@ Route::get('/choose-lite', function () {
     return view('plans.choose-lite');
 })->name('choose.lite');
 
+Route::get('/current-plan', function () {
+    return view('plans.current-plan');
+})->name('current.plan');
+
 // Onboarding Pages
 Route::get('/sign-up', function () {
     return view('auth.sign-up');
