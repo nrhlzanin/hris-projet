@@ -12,11 +12,12 @@ class RedirectIfAuthenticated
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->role === 'admin') {
+            // Jika is_admin true, redirect ke admin.dashboard
+            if ($user->is_admin) {
                 return redirect()->route('admin.dashboard');
-            } elseif ($user->role === 'user') {
-                return redirect()->route('user.dashboard');
             }
+            // Jika is_admin false, redirect ke user.dashboard
+            return redirect()->route('user.dashboard');
         }
 
         return $next($request);

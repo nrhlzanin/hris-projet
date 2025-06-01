@@ -4,14 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Exports\EmployeesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeController extends Controller
 {
     // Menampilkan semua data employee
-    public function index()
+    public function index(Request $request)
     {
-        $employees = Employee::all();
-        return view('admin.Employee.employee-database', compact('employees'));
+        $query = Employee::query();
+
+        $sortable = ['nama', 'jenis_kelamin', 'cabang', 'jabatan'];
+        $direction = $request->get('direction', 'asc');
+        if ($request->filled('sort') && in_array($request->sort, $sortable)) {
+            $query->orderBy($request->sort, $direction);
+        } else {
+            $query->orderBy('id', 'desc');
+        }
+
+        $perPage = $request->get('per_page', 10);
+        $employees = $query->paginate($perPage)->appends($request->except('page'));
+
+        // Summary data
+        $periode = now()->format('F Y'); // contoh: May 2025
+        $totalEmployee = Employee::count();
+        $totalNewHire = Employee::whereMonth('created_at', now()->month)->whereYear('created_at', now()->year)->count();
+        $fullTimeEmployee = Employee::where('status', true)->count();
+
+        return view('admin.Employee.employee-database', compact(
+            'employees', 'periode', 'totalEmployee', 'totalNewHire', 'fullTimeEmployee'
+        ));
     }
 
     // Menampilkan form tambah employee
@@ -33,7 +55,7 @@ class EmployeeController extends Controller
 
         Employee::create($validated);
 
-        return redirect()->route('admin.employee.database')->with('success', 'Employee added successfully!');
+        return redirect()->route('admin.Employee.employee-database')->with('success', 'Employee added!');
     }
 
     // Menampilkan form edit employee
@@ -58,7 +80,7 @@ class EmployeeController extends Controller
 
         $employee->update($validated);
 
-        return redirect()->route('admin.employee.database')->with('success', 'Employee updated successfully!');
+        return redirect()->route('admin.Employee.employee-database')->with('success', 'Employee updated successfully!');
     }
 
     // Hapus data employee
@@ -67,7 +89,7 @@ class EmployeeController extends Controller
         $employee = Employee::findOrFail($id);
         $employee->delete();
 
-        return redirect()->route('admin.employee.database')->with('success', 'Employee deleted successfully!');
+        return redirect()->route('admin.Employee.employee-database')->with('success', 'Employee deleted successfully!');
     }
 
     // Import data employee dari file CSV
@@ -99,5 +121,11 @@ class EmployeeController extends Controller
         fclose($fileHandle);
 
         return redirect()->back()->with('success', 'Data berhasil diimport!');
+    }
+
+    // Export data employee ke file Excel
+    public function export()
+    {
+        return Excel::download(new EmployeesExport, 'employees.xlsx');
     }
 }

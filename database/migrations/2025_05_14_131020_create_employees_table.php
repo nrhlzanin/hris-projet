@@ -20,6 +20,7 @@ return new class extends Migration
             $table->char('gender', 1);
             $table->text('address')->nullable();
             $table->string('position', 100)->nullable();
+            $table->string('status', 50)->nullable(); // Tambahkan ini jika ingin ada status
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('ck_settings_id')->references('id')->on('check_clock_settings')->onDelete('set null');
             $table->timestamps();

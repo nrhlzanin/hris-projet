@@ -1,18 +1,30 @@
 <?php
+
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class RoleMiddleware
 {
     public function handle(Request $request, Closure $next, $role)
     {
-        if (Auth::check() && Auth::user()->role === $role) {
-            return $next($request);
+        if (!Auth::check()) {
+            abort(403, 'Unauthorized');
         }
 
-        abort(403); // Akses ditolak
+        $user = Auth::user();
+
+        // Jika role admin, hanya boleh user dengan is_admin = true
+        if ($role === 'admin' && !$user->is_admin) {
+            abort(403, 'Unauthorized');
+        }
+        // Jika role user, hanya boleh user dengan is_admin = false
+        if ($role === 'user' && $user->is_admin) {
+            abort(403, 'Unauthorized');
+        }
+
+        return $next($request);
     }
 }

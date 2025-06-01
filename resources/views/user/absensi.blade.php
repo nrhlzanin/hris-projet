@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body class="bg-gray-100">
@@ -31,30 +32,11 @@
                         <!-- Left Section (Row 1) -->
                         <div class="space-y-4 w-full lg:w-1/2">
                             <div>
-                                <label class="block text-sm font-medium">Select Employees</label>
-                                <select class="w-full border rounded px-3 py-2">
-                                    <option>Choose Employee</option>
-                                </select>
-                            </div>
-
-                            <div>
                                 <label class="block text-sm font-medium">Absent Type</label>
                                 <select class="w-full border rounded px-3 py-2">
                                     <option>Choose Absent Type</option>
                                 </select>
                             </div>
-
-                            <div class="flex gap-4">
-                                <div class="flex-1">
-                                    <label class="block text-sm font-medium">Start Date</label>
-                                    <input type="date" class="w-full border rounded px-3 py-2">
-                                </div>
-                                <div class="flex-1">
-                                    <label class="block text-sm font-medium">End Date</label>
-                                    <input type="date" class="w-full border rounded px-3 py-2">
-                                </div>
-                            </div>
-
                             <div>
                                 <label class="block text-sm font-medium">Upload Supporting Evidence</label>
                                 <div class="border-dashed border-2 rounded-lg p-6 text-center">
@@ -68,19 +50,14 @@
                                     disabled>Upload Now</button>
                             </div>
                         </div>
-
                         <!-- Right Section (Row 2) -->
                         <div class="space-y-4 w-full lg:w-1/2">
                             <div>
                                 <label class="block text-sm font-medium">Location</label>
-                                <select class="w-full border rounded px-3 py-2">
-                                    <option>Choose Location</option>
-                                </select>
                             </div>
 
                             <div>
-                                <img src="https://via.placeholder.com/400x200?text=Map" alt="Map"
-                                    class="w-full h-48 object-cover rounded border">
+                                <div id="map" class="w-full h-48 rounded border"></div>
                             </div>
 
                             <div>
@@ -138,6 +115,62 @@
             });
         });
     </script>
-</body>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var defaultLat = 0;
+            var defaultLng = 0;
+            window.map = L.map('map', {
+                dragging: false,
+                touchZoom: true,
+                scrollWheelZoom: true,
+                doubleClickZoom: true,
+                boxZoom: true,
+                keyboard: false,
+                zoomControl: true,
+                zoomAnimation: true,
+                attributionControl: true
+            }).setView([defaultLat, defaultLng], 13);
 
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Marker tidak draggable
+            window.marker = L.marker([defaultLat, defaultLng]).addTo(window.map);
+
+            // Set nilai awal input
+            document.querySelector('input[placeholder="Lat lokasi"]').value = defaultLat;
+            document.querySelector('input[placeholder="Long lokasi"]').value = defaultLng;
+
+            // Tidak perlu event dragend atau map click
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Cek apakah browser mendukung Geolocation
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    // Ambil koordinat
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+
+                    // Set nilai input
+                    document.querySelector('input[placeholder="Lat lokasi"]').value = lat;
+                    document.querySelector('input[placeholder="Long lokasi"]').value = lng;
+
+                    // Update posisi marker dan peta
+                    if (window.marker && window.map) {
+                        window.marker.setLatLng([lat, lng]);
+                        window.map.setView([lat, lng], 15);
+                    }
+                }, function(error) {
+                    alert("Izin lokasi ditolak atau terjadi error.");
+                });
+            } else {
+                alert("Browser tidak mendukung fitur lokasi.");
+            }
+        });
+    </script>
+</body>
 </html>

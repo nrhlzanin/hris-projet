@@ -10,15 +10,18 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'user_id',
-        'ck_settings_id',
-        'first_name',
-        'last_name',
-        'gender',
-        'address',
+        'avatar',
+        'nama',
+        'jenis_kelamin',
+        'nomor_telepon',
+        'cabang',
         'position',
-        'avatar', // Jika kolom avatar sudah ditambahkan
+        'grade',
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
     ];
 }
 
@@ -37,7 +40,7 @@ class CreateEmployeesTable extends Migration
             $table->string('jenis_kelamin');
             $table->string('nomor_telepon');
             $table->string('cabang');
-            $table->string('jabatan');
+            $table->string('position');
             $table->string('grade');
             $table->boolean('status')->default(true);
             $table->timestamps();
